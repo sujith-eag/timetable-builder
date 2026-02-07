@@ -1,4 +1,4 @@
-# Timetable System - Development Makefile
+# Timetable Builder - Development Makefile
 # ========================================
 #
 # Usage:
@@ -23,6 +23,7 @@ PROJECT_NAME := timetable
 SRC_DIR := src/$(PROJECT_NAME)
 TESTS_DIR := tests
 DOCKER_IMAGE := $(PROJECT_NAME):latest
+REGISTRY := ghcr.io/sujith-eag/timetable-builder
 
 # Colors for output
 BLUE := \033[0;34m
@@ -31,7 +32,7 @@ YELLOW := \033[0;33m
 NC := \033[0m # No Color
 
 help: ## Show this help message
-	@echo "$(BLUE)Timetable System - Available Commands$(NC)"
+	@echo "$(BLUE)Timetable Builder - Available Commands$(NC)"
 	@echo ""
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  $(GREEN)%-20s$(NC) %s\n", $$1, $$2}'
 	@echo ""
@@ -111,51 +112,31 @@ clean: ## Clean build artifacts
 # ==================== Docker ====================
 
 docker-build: ## Build Docker image
-	docker build -t $(DOCKER_IMAGE) -f docker/Dockerfile .
+	docker build -t $(DOCKER_IMAGE) .
 
 docker-run: ## Run Docker container
-	docker run --rm -it -v $(PWD)/stage_1:/app/data/stage_1 $(DOCKER_IMAGE)
+	docker run --rm -it $(DOCKER_IMAGE)
+
+docker-run-data: ## Run Docker container with data volume (mount ./data directory)
+	docker run --rm -it -v $(PWD)/data:/app/data -e TIMETABLE_DATA_DIR=/app/data $(DOCKER_IMAGE)
 
 docker-shell: ## Open shell in Docker container
-	docker run --rm -it -v $(PWD):/app/data $(DOCKER_IMAGE) /bin/bash
+	docker run --rm -it $(DOCKER_IMAGE) /bin/bash
 
 docker-compose-up: ## Start services with Docker Compose
-	docker-compose -f docker/docker-compose.yml up -d
+	docker-compose up -d
 
 docker-compose-down: ## Stop Docker Compose services
-	docker-compose -f docker/docker-compose.yml down
+	docker-compose down
+
+docker-compose-logs: ## Show Docker Compose logs
+	docker-compose logs -f
 
 # ==================== Development ====================
 
 dev-setup: install-dev ## Complete development setup
 	pre-commit install
 	@echo "$(GREEN)Development environment ready!$(NC)"
-
-run: ## Run the CLI
-	$(PYTHON) -m timetable
-
-stage2-build: ## Build Stage 2 data
-	$(PYTHON) -m timetable build stage2
-
-stage3-build: ## Build Stage 3 data
-	$(PYTHON) -m timetable build stage3
-
-stage4-build: ## Build Stage 4 data
-	$(PYTHON) -m timetable build stage4
-
-stage6-enrich: ## Enrich Stage 6 schedule
-	$(PYTHON) -m timetable enrich
-
-validate: ## Validate all stages
-	$(PYTHON) -m timetable validate --all
-
-# ==================== API ====================
-
-api-dev: ## Run API in development mode
-	uvicorn timetable.api.app:app --reload --host 0.0.0.0 --port 8000
-
-api-prod: ## Run API in production mode
-	uvicorn timetable.api.app:app --host 0.0.0.0 --port 8000 --workers 4
 
 # ==================== Documentation ====================
 
@@ -170,8 +151,14 @@ docs-build: ## Build documentation
 version: ## Show current version
 	@$(PYTHON) -c "import timetable; print(timetable.__version__)"
 
-publish-test: build ## Publish to TestPyPI
-	twine upload --repository testpypi dist/*
+check-dist: build ## Check distribution files
+	twine check dist/*
 
-publish: build ## Publish to PyPI
+test-install: build ## Test installation in temporary environment
+	$(PYTHON) -m pip install --user --force-reinstall dist/*.whl
+	@echo "$(GREEN)Testing CLI:$(NC)"
+	timetable --version
+	@echo "$(GREEN)Installation test successful!$(NC)"
+
+publish: check-dist ## Publish to PyPI
 	twine upload dist/*

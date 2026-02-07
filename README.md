@@ -144,6 +144,63 @@ pytest
 ruff check .
 ```
 
+## Docker
+
+### Run with Docker
+
+You can run Timetable Builder using Docker without installing Python dependencies locally:
+
+```bash
+# Build the Docker image
+make docker-build
+
+# Run the CLI
+make docker-run
+
+# Or run directly
+docker run --rm -it timetable:latest --help
+```
+
+### Run with Data Volume
+
+To process your timetable data with Docker, create a `data` directory with your timetable project files and mount it:
+
+```bash
+# Create data directory and copy your timetable project files there
+mkdir data
+cp -r /path/to/your/timetable/project/* data/
+
+# Run the container
+docker run --rm -it -v $(pwd)/data:/app/data timetable-builder:latest build all
+
+# Or use the Makefile
+make docker-run-data
+```
+
+### Development with Docker
+
+For development with hot reload:
+
+```bash
+# Start development container
+make docker-compose-dev
+
+# View logs
+make docker-compose-logs
+```
+
+### GitHub Container Registry
+
+The Docker image is automatically built and published to GitHub Container Registry:
+
+```bash
+# Pull the latest image
+docker pull ghcr.io/sujith-eag/timetable-builder:latest
+
+# Run with GHCR image
+docker run --rm -it ghcr.io/sujith-eag/timetable-builder:latest --help
+```
+
 ## Quick Start
 
 ### 1. Initialize a New Project
