@@ -29,7 +29,13 @@ error_console = Console(stderr=True)
 
 def get_data_dir(data_dir: Optional[str] = None) -> Path:
     """
-    Get the data directory from argument or environment variable.
+    Get the data directory from argument, environment variable, or settings.
+
+    Priority order:
+    1. Explicit --data-dir argument
+    2. TIMETABLE_DATA_DIR environment variable
+    3. Settings default data_dir
+    4. Current working directory (fallback)
 
     Args:
         data_dir: Explicit data directory path
@@ -47,8 +53,10 @@ def get_data_dir(data_dir: Optional[str] = None) -> Path:
         if env_dir:
             path = Path(env_dir)
         else:
-            # Try current directory
-            path = Path.cwd()
+            # Fall back to settings default
+            from timetable.config.settings import get_settings
+            settings = get_settings()
+            path = settings.data_dir
 
     if not path.exists():
         raise click.ClickException(

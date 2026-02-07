@@ -42,7 +42,7 @@ class Settings(BaseSettings):
 
     # Core paths
     data_dir: Path = Field(
-        default_factory=Path.cwd,
+        default_factory=lambda: Path.home() / "timetable-data",
         description="Root directory containing stage data",
     )
 

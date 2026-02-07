@@ -14,6 +14,7 @@ from .load import load
 from .schema import schema
 from .export import export
 from .build import build
+from .init import init
 
 
 @click.group()
@@ -47,6 +48,10 @@ def cli(ctx: click.Context, verbose: bool, quiet: bool) -> None:
     ctx.obj["verbose"] = verbose
     ctx.obj["quiet"] = quiet
 
+    # Configure logging from settings
+    from timetable.core.logging import configure_from_settings
+    configure_from_settings()
+
 
 # Register all command groups
 cli.add_command(status)
@@ -56,6 +61,7 @@ cli.add_command(load)
 cli.add_command(schema)
 cli.add_command(export)
 cli.add_command(build)
+cli.add_command(init)
 
 
 def main() -> None:
