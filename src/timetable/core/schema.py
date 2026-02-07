@@ -110,7 +110,7 @@ class SchemaValidator:
             self.schemas_dir = Path(schemas_dir)
         else:
             # Default to package schemas directory
-            self.schemas_dir = Path(__file__).parent.parent.parent.parent / "schemas"
+            self.schemas_dir = Path(__file__).parent.parent / "schemas"
 
         self._schema_cache: dict[str, dict] = {}
         logger.debug(f"Schema validator initialized with dir: {self.schemas_dir}")

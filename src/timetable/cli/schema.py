@@ -85,7 +85,8 @@ def schema_validate(
     """
     try:
         data_path = get_data_dir(data_dir) if data_dir else Path.cwd()
-        validator = SchemaValidator(data_path / "schemas" if (data_path / "schemas").exists() else None)
+        # Always use package schemas, not project schemas
+        validator = SchemaValidator()
 
         # Determine file to validate
         if file:
