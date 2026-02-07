@@ -100,6 +100,9 @@ def schema_validate(
                 "teaching_assignments": "stage_3/teachingAssignments_sem1.json",
                 "overlap_constraints": "stage_3/studentGroupOverlapConstraints.json",
                 "statistics": "stage_3/statistics.json",
+                "scheduling_input": "stage_4/schedulingInput.json",
+                "ai_schedule": "stage_5/ai_solved_schedule.json",
+                "enriched_timetable": "stage_6/timetable_enriched.json",
             }
             if schema_name in file_map:
                 file_path = data_path / file_map[schema_name]

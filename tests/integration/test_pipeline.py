@@ -179,6 +179,9 @@ class TestCLIIntegration:
             "faculty",
             "subjects_full",
             "faculty_full",
+            "scheduling_input",
+            "ai_schedule",
+            "enriched_timetable",
         ]
 
         for schema_name in schemas:

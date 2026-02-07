@@ -1,0 +1,95 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://timetable.example.com/schemas/stage5/ai_solved_schedule.json",
+  "title": "AI Solved Schedule",
+  "description": "AI-generated timetable schedule output with session assignments",
+  "type": "object",
+  "required": [
+    "metadata",
+    "schedule"
+  ],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": [
+        "generatedAt",
+        "generator",
+        "version",
+        "totalSessions",
+        "description"
+      ],
+      "properties": {
+        "generatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the AI schedule was generated"
+        },
+        "generator": {
+          "type": "string",
+          "description": "Name of the AI system that generated this schedule"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+$",
+          "description": "Version of the schedule format"
+        },
+        "totalSessions": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Total number of scheduled sessions"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the generated schedule"
+        }
+      },
+      "additionalProperties": false,
+      "description": "Metadata about the AI-generated schedule"
+    },
+    "schedule": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "assignmentId",
+          "sessionNumber",
+          "day",
+          "slotId",
+          "roomId"
+        ],
+        "properties": {
+          "assignmentId": {
+            "type": "string",
+            "pattern": "^TA_[A-Z0-9_]+$",
+            "description": "Unique assignment identifier (matches Stage 4 assignments)"
+          },
+          "sessionNumber": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Session number for this assignment (1, 2, 3, etc.)"
+          },
+          "day": {
+            "type": "string",
+            "enum": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            "description": "Day of the week for this session"
+          },
+          "slotId": {
+            "type": "string",
+            "pattern": "^S\\d+(?:\\+S\\d+)?$",
+            "description": "Time slot identifier (single: S1, double: S1+S2)"
+          },
+          "roomId": {
+            "type": "string",
+            "enum": ["AB-402", "AB-403", "AB-412", "LAB-1", "LAB-2"],
+            "description": "Room assigned for this session"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A single scheduled session"
+      },
+      "minItems": 1,
+      "description": "Array of scheduled sessions"
+    }
+  },
+  "additionalProperties": false
+}

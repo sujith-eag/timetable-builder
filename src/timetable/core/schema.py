@@ -90,6 +90,12 @@ class SchemaValidator:
         "teaching_assignments": "stage3/teachingAssignments.schema.json",
         "overlap_constraints": "stage3/overlapConstraints.schema.json",
         "statistics": "stage3/statistics.schema.json",
+        # Stage 4
+        "scheduling_input": "stage4/schedulingInput.schema.json",
+        # Stage 5
+        "ai_schedule": "stage5/ai_solved_schedule.schema.json",
+        # Stage 6
+        "enriched_timetable": "stage6/timetable_enriched.schema.json",
     }
 
     def __init__(self, schemas_dir: Optional[Union[str, Path]] = None):

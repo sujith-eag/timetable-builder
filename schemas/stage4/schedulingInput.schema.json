@@ -1,0 +1,626 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://timetable.example.com/schemas/stage4/schedulingInput.json",
+  "title": "Scheduling Input",
+  "description": "Self-contained scheduling input for AI-based timetable generation",
+  "type": "object",
+  "required": [
+    "metadata",
+    "configuration",
+    "timeSlots",
+    "slotCombinations",
+    "rooms",
+    "studentGroups",
+    "constraints",
+    "assignments"
+  ],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": [
+        "generatedAt",
+        "generator",
+        "version",
+        "totalAssignments",
+        "semester1Assignments",
+        "semester3Assignments",
+        "totalTimeSlots",
+        "totalRooms",
+        "description"
+      ],
+      "properties": {
+        "generatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the scheduling input was generated"
+        },
+        "generator": {
+          "type": "string",
+          "description": "Name of the script/component that generated this input"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+$",
+          "description": "Version of the scheduling input format"
+        },
+        "totalAssignments": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total number of teaching assignments"
+        },
+        "semester1Assignments": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of assignments for semester 1"
+        },
+        "semester3Assignments": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of assignments for semester 3"
+        },
+        "totalTimeSlots": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total number of available time slots"
+        },
+        "totalRooms": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total number of available rooms"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the scheduling input"
+        }
+      },
+      "additionalProperties": false
+    },
+    "configuration": {
+      "type": "object",
+      "required": [
+        "weekdays",
+        "dayStart",
+        "dayEnd",
+        "breakWindows",
+        "sessionTypes",
+        "resourceConstraints"
+      ],
+      "properties": {
+        "weekdays": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+          },
+          "minItems": 1,
+          "description": "Days of the week for scheduling"
+        },
+        "dayStart": {
+          "type": "string",
+          "pattern": "^([01]?[0-9]|2[0-3]):[0-5][0-9]$",
+          "description": "Day start time in HH:MM format"
+        },
+        "dayEnd": {
+          "type": "string",
+          "pattern": "^([01]?[0-9]|2[0-3]):[0-5][0-9]$",
+          "description": "Day end time in HH:MM format"
+        },
+        "breakWindows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["start", "end", "type"],
+            "properties": {
+              "start": {
+                "type": "string",
+                "pattern": "^([01]?[0-9]|2[0-3]):[0-5][0-9]$",
+                "description": "Break start time in HH:MM format"
+              },
+              "end": {
+                "type": "string",
+                "pattern": "^([01]?[0-9]|2[0-3]):[0-5][0-9]$",
+                "description": "Break end time in HH:MM format"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["short", "lunch"],
+                "description": "Type of break window"
+              }
+            },
+            "additionalProperties": false
+          },
+          "description": "Break windows during the day"
+        },
+        "sessionTypes": {
+          "type": "object",
+          "patternProperties": {
+            "^(theory|practical|tutorial)$": {
+              "type": "object",
+              "required": ["duration", "requiresContiguous"],
+              "properties": {
+                "duration": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "Session duration in minutes"
+                },
+                "requiresContiguous": {
+                  "type": "boolean",
+                  "description": "Whether this session type requires contiguous slots"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false,
+          "description": "Configuration for different session types"
+        },
+        "resourceConstraints": {
+          "type": "object",
+          "required": [
+            "maxConsecutiveSlotsPerFaculty",
+            "maxDailySlotsPerStudentGroup",
+            "minGapBetweenSameFaculty"
+          ],
+          "properties": {
+            "maxConsecutiveSlotsPerFaculty": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Maximum consecutive slots a faculty can teach"
+            },
+            "maxDailySlotsPerStudentGroup": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Maximum daily slots per student group"
+            },
+            "minGapBetweenSameFaculty": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Minimum gap slots between sessions by same faculty"
+            }
+          },
+          "additionalProperties": false,
+          "description": "Resource allocation constraints"
+        }
+      },
+      "additionalProperties": false
+    },
+    "timeSlots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["day", "slotId", "start", "end", "durationMinutes"],
+        "properties": {
+          "day": {
+            "type": "string",
+            "enum": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            "description": "Day of the week"
+          },
+          "slotId": {
+            "type": "string",
+            "pattern": "^S\\d+$",
+            "description": "Slot identifier (e.g., S1, S2)"
+          },
+          "start": {
+            "type": "string",
+            "pattern": "^([01]?[0-9]|2[0-3]):[0-5][0-9]$",
+            "description": "Slot start time in HH:MM format"
+          },
+          "end": {
+            "type": "string",
+            "pattern": "^([01]?[0-9]|2[0-3]):[0-5][0-9]$",
+            "description": "Slot end time in HH:MM format"
+          },
+          "durationMinutes": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Duration of the slot in minutes"
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "description": "Available time slots for scheduling"
+    },
+    "slotCombinations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "slots", "durationMinutes"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["single", "double"],
+            "description": "Type of slot combination"
+          },
+          "slots": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^S\\d+$",
+              "description": "Slot identifier"
+            },
+            "minItems": 1,
+            "description": "Slots that make up this combination"
+          },
+          "durationMinutes": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Total duration of this slot combination in minutes"
+          },
+          "requiresContiguous": {
+            "type": "boolean",
+            "description": "Whether this combination requires contiguous slots"
+          }
+        },
+        "additionalProperties": false
+      },
+      "description": "Valid combinations of time slots"
+    },
+    "rooms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["roomId", "type", "capacity"],
+        "properties": {
+          "roomId": {
+            "type": "string",
+            "description": "Unique room identifier"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["lecture", "lab", "tutorial"],
+            "description": "Type of room"
+          },
+          "capacity": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Maximum number of students the room can accommodate"
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "description": "Available rooms for scheduling"
+    },
+    "studentGroups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "semester",
+          "section",
+          "studentCount",
+          "studentGroupId",
+          "compulsorySubjects"
+        ],
+        "properties": {
+          "semester": {
+            "type": "integer",
+            "enum": [1, 3],
+            "description": "Semester number"
+          },
+          "section": {
+            "type": "string",
+            "pattern": "^[A-Z]$",
+            "description": "Section identifier (single letter)"
+          },
+          "studentCount": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Number of students in this group"
+          },
+          "studentGroupId": {
+            "type": "string",
+            "description": "Unique student group identifier"
+          },
+          "compulsorySubjects": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Subject code"
+            },
+            "minItems": 1,
+            "description": "List of compulsory subject codes for this group"
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "description": "Student groups to be scheduled"
+    },
+    "constraints": {
+      "type": "object",
+      "required": [
+        "studentGroupOverlap",
+        "facultyList",
+        "studentGroupList",
+        "hardConstraints",
+        "softConstraints"
+      ],
+      "properties": {
+        "studentGroupOverlap": {
+          "type": "object",
+          "required": ["cannotOverlapWith", "canRunParallelWith"],
+          "properties": {
+            "cannotOverlapWith": {
+              "type": "object",
+              "patternProperties": {
+                ".*": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Student group ID that cannot overlap"
+                  }
+                }
+              },
+              "additionalProperties": false,
+              "description": "Groups that cannot have overlapping sessions"
+            },
+            "canRunParallelWith": {
+              "type": "object",
+              "patternProperties": {
+                ".*": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Student group ID that can run in parallel"
+                  }
+                }
+              },
+              "additionalProperties": false,
+              "description": "Groups that can have parallel sessions"
+            }
+          },
+          "additionalProperties": false,
+          "description": "Student group overlap constraints"
+        },
+        "facultyList": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Faculty identifier"
+          },
+          "minItems": 1,
+          "description": "List of all faculty members"
+        },
+        "studentGroupList": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Student group identifier"
+          },
+          "minItems": 1,
+          "description": "List of all student groups"
+        },
+        "hardConstraints": {
+          "type": "object",
+          "properties": {
+            "noFacultyConflict": {
+              "type": "boolean",
+              "description": "Faculty cannot be double-booked"
+            },
+            "noStudentGroupConflict": {
+              "type": "boolean",
+              "description": "Student groups cannot be double-booked"
+            },
+            "respectRoomType": {
+              "type": "boolean",
+              "description": "Sessions must use appropriate room types"
+            },
+            "respectSessionDuration": {
+              "type": "boolean",
+              "description": "Sessions must fit within available time slots"
+            },
+            "respectContiguousRequirement": {
+              "type": "boolean",
+              "description": "Sessions requiring contiguous slots must get them"
+            }
+          },
+          "additionalProperties": false,
+          "description": "Hard constraints that must be satisfied"
+        },
+        "softConstraints": {
+          "type": "object",
+          "properties": {
+            "preferPreAllocatedRooms": {
+              "type": "boolean",
+              "description": "Prefer rooms that are pre-allocated to subjects"
+            },
+            "minimizeGapsForFaculty": {
+              "type": "boolean",
+              "description": "Minimize gaps in faculty schedules"
+            },
+            "minimizeGapsForStudents": {
+              "type": "boolean",
+              "description": "Minimize gaps in student schedules"
+            },
+            "balanceLoadAcrossDays": {
+              "type": "boolean",
+              "description": "Balance workload across days of the week"
+            }
+          },
+          "additionalProperties": false,
+          "description": "Soft constraints that should be optimized"
+        }
+      },
+      "additionalProperties": false
+    },
+    "assignments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "assignmentId",
+          "subjectCode",
+          "shortCode",
+          "subjectTitle",
+          "componentType",
+          "semester",
+          "facultyId",
+          "facultyName",
+          "studentGroupIds",
+          "sections",
+          "sessionDuration",
+          "sessionsPerWeek",
+          "totalSessionsNeeded",
+          "requiresRoomType",
+          "preferredRooms",
+          "requiresContiguous",
+          "validSlotTypes",
+          "priority",
+          "isElective",
+          "constraints"
+        ],
+        "properties": {
+          "assignmentId": {
+            "type": "string",
+            "description": "Unique assignment identifier"
+          },
+          "subjectCode": {
+            "type": "string",
+            "description": "Subject code (e.g., 25MCA15)"
+          },
+          "shortCode": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Short subject code for display"
+          },
+          "subjectTitle": {
+            "type": "string",
+            "description": "Full subject title"
+          },
+          "componentType": {
+            "type": "string",
+            "enum": ["theory", "practical", "tutorial"],
+            "description": "Type of teaching component"
+          },
+          "semester": {
+            "type": "integer",
+            "enum": [1, 3],
+            "description": "Semester number"
+          },
+          "facultyId": {
+            "type": "string",
+            "description": "Faculty member identifier"
+          },
+          "facultyName": {
+            "type": "string",
+            "description": "Full faculty name"
+          },
+          "studentGroupIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Student group identifier"
+            },
+            "minItems": 1,
+            "description": "Student groups for this assignment"
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Z]$",
+              "description": "Section identifier"
+            },
+            "minItems": 1,
+            "description": "Sections for this assignment"
+          },
+          "sessionDuration": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Duration of each session in minutes"
+          },
+          "sessionsPerWeek": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Number of sessions per week"
+          },
+          "totalSessionsNeeded": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Total sessions needed for this assignment"
+          },
+          "requiresRoomType": {
+            "type": "string",
+            "enum": ["lecture", "lab", "tutorial"],
+            "description": "Required room type for this assignment"
+          },
+          "preferredRooms": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Preferred room identifier"
+            },
+            "description": "Preferred rooms for this assignment"
+          },
+          "requiresContiguous": {
+            "type": "boolean",
+            "description": "Whether this assignment requires contiguous time slots"
+          },
+          "validSlotTypes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["single", "double"],
+              "description": "Valid slot type"
+            },
+            "minItems": 1,
+            "description": "Valid slot types for this assignment"
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["high", "medium", "low"],
+            "description": "Scheduling priority"
+          },
+          "isElective": {
+            "type": "boolean",
+            "description": "Whether this is an elective subject"
+          },
+          "constraints": {
+            "type": "object",
+            "required": ["studentGroupConflicts", "facultyConflicts"],
+            "properties": {
+              "studentGroupConflicts": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Student group that cannot conflict"
+                },
+                "description": "Student groups that cannot have conflicting schedules"
+              },
+              "facultyConflicts": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Faculty member that cannot conflict"
+                },
+                "description": "Faculty members that cannot have conflicting schedules"
+              },
+              "fixedDay": {
+                "type": ["string", "null"],
+                "enum": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", null],
+                "description": "Fixed day for this assignment (optional)"
+              },
+              "fixedSlot": {
+                "type": ["string", "null"],
+                "pattern": "^S\\d+$",
+                "description": "Fixed slot for this assignment (optional)"
+              },
+              "mustBeInRoom": {
+                "type": ["string", "null"],
+                "description": "Required room for this assignment (optional)"
+              }
+            },
+            "additionalProperties": false,
+            "description": "Specific constraints for this assignment"
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "description": "Teaching assignments to be scheduled"
+    }
+  },
+  "additionalProperties": false
+}
