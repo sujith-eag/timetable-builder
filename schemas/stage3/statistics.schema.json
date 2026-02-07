@@ -1,0 +1,430 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://timetable.eaglecampus.edu/schemas/stage3/statistics.schema.json",
+  "title": "Stage 3 Statistics File",
+  "description": "Schema for statistics.json - comprehensive statistics about teaching assignments",
+  "type": "object",
+  "required": ["metadata", "semester1", "semester3", "combined"],
+  "additionalProperties": false,
+  "properties": {
+    "metadata": {
+      "$ref": "#/definitions/StatisticsMetadata"
+    },
+    "semester1": {
+      "$ref": "#/definitions/SemesterStats"
+    },
+    "semester3": {
+      "$ref": "#/definitions/SemesterStats"
+    },
+    "combined": {
+      "$ref": "#/definitions/CombinedStats"
+    }
+  },
+  "definitions": {
+    "StatisticsMetadata": {
+      "type": "object",
+      "description": "Metadata about the statistics file",
+      "required": ["generatedAt", "generator", "version"],
+      "additionalProperties": false,
+      "properties": {
+        "generatedAt": {
+          "type": "string",
+          "description": "Generation timestamp",
+          "format": "date-time"
+        },
+        "generator": {
+          "type": "string",
+          "description": "Script/tool that generated this file"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version of the statistics format"
+        }
+      }
+    },
+    "SemesterStats": {
+      "type": "object",
+      "description": "Statistics for a single semester",
+      "required": ["semester", "totalAssignments", "totalSessions", "totalHours", "byType", "byComponent", "byPriority", "byRoomType", "facultyDistribution", "subjectCoverage", "studentGroups", "constraints", "conflictPatterns", "roomRequirements"],
+      "additionalProperties": false,
+      "properties": {
+        "semester": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "totalAssignments": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "totalSessions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "totalHours": {
+          "type": "number",
+          "minimum": 0
+        },
+        "byType": {
+          "type": "object",
+          "description": "Statistics by subject type",
+          "additionalProperties": {
+            "$ref": "#/definitions/TypeStats"
+          }
+        },
+        "byComponent": {
+          "type": "object",
+          "description": "Statistics by component type",
+          "additionalProperties": {
+            "$ref": "#/definitions/ComponentStats"
+          }
+        },
+        "byPriority": {
+          "type": "object",
+          "description": "Statistics by priority",
+          "additionalProperties": {
+            "$ref": "#/definitions/PriorityStats"
+          }
+        },
+        "byRoomType": {
+          "type": "object",
+          "description": "Statistics by room type",
+          "additionalProperties": {
+            "$ref": "#/definitions/RoomTypeStats"
+          }
+        },
+        "facultyDistribution": {
+          "type": "object",
+          "description": "Faculty distribution statistics",
+          "additionalProperties": {
+            "$ref": "#/definitions/FacultyDistributionEntry"
+          }
+        },
+        "subjectCoverage": {
+          "type": "object",
+          "description": "Subject coverage statistics",
+          "additionalProperties": {
+            "$ref": "#/definitions/SubjectCoverageEntry"
+          }
+        },
+        "studentGroups": {
+          "type": "object",
+          "description": "Student group statistics",
+          "additionalProperties": {
+            "$ref": "#/definitions/StudentGroupStatsEntry"
+          }
+        },
+        "constraints": {
+          "$ref": "#/definitions/ConstraintStats"
+        },
+        "conflictPatterns": {
+          "type": "object",
+          "description": "Conflict pattern counts",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "roomRequirements": {
+          "$ref": "#/definitions/RoomRequirementStats"
+        }
+      }
+    },
+    "TypeStats": {
+      "type": "object",
+      "description": "Statistics for a subject type",
+      "required": ["count", "sessions", "hours"],
+      "additionalProperties": false,
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sessions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hours": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "ComponentStats": {
+      "type": "object",
+      "description": "Statistics for a component type",
+      "required": ["count", "sessions", "hours", "avgDuration"],
+      "additionalProperties": false,
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sessions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hours": {
+          "type": "number",
+          "minimum": 0
+        },
+        "avgDuration": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "PriorityStats": {
+      "type": "object",
+      "description": "Statistics for a priority level",
+      "required": ["count", "percentage"],
+      "additionalProperties": false,
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "percentage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    },
+    "RoomTypeStats": {
+      "type": "object",
+      "description": "Statistics for a room type",
+      "required": ["sessions", "hours"],
+      "additionalProperties": false,
+      "properties": {
+        "sessions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hours": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "FacultyDistributionEntry": {
+      "type": "object",
+      "description": "Faculty distribution entry",
+      "required": ["assignments", "sessions", "hours"],
+      "additionalProperties": false,
+      "properties": {
+        "assignments": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sessions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hours": {
+          "type": "number",
+          "minimum": 0
+        },
+        "byComponent": {
+          "type": "object",
+          "description": "Breakdown by component type",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "SubjectCoverageEntry": {
+      "type": "object",
+      "description": "Subject coverage entry",
+      "required": ["components", "faculty", "totalSessions"],
+      "additionalProperties": false,
+      "properties": {
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "faculty": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "totalSessions": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "StudentGroupStatsEntry": {
+      "type": "object",
+      "description": "Student group statistics entry",
+      "required": ["assignments", "sessions", "subjects"],
+      "additionalProperties": false,
+      "properties": {
+        "assignments": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sessions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "subjects": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ConstraintStats": {
+      "type": "object",
+      "description": "Constraint statistics",
+      "required": ["totalWithConstraints", "withFixedTiming", "withPreAllocatedRooms", "withRoomPreferences", "withOverlapConstraints"],
+      "additionalProperties": false,
+      "properties": {
+        "totalWithConstraints": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "withFixedTiming": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "withPreAllocatedRooms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "withRoomPreferences": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "withOverlapConstraints": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "RoomRequirementStats": {
+      "type": "object",
+      "description": "Room requirement statistics",
+      "required": ["lectureRooms", "labs"],
+      "additionalProperties": false,
+      "properties": {
+        "lectureRooms": {
+          "type": "object",
+          "required": ["sessions", "hours"],
+          "properties": {
+            "sessions": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "hours": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        "labs": {
+          "type": "object",
+          "required": ["sessions", "hours"],
+          "properties": {
+            "sessions": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "hours": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
+    "CombinedStats": {
+      "type": "object",
+      "description": "Combined statistics across all semesters",
+      "required": ["totalAssignments", "totalSessions", "totalHours", "facultyWorkload", "resourceAnalysis"],
+      "additionalProperties": false,
+      "properties": {
+        "totalAssignments": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "totalSessions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "totalHours": {
+          "type": "number",
+          "minimum": 0
+        },
+        "facultyWorkload": {
+          "type": "object",
+          "description": "Faculty workload across semesters",
+          "additionalProperties": {
+            "$ref": "#/definitions/FacultyWorkloadEntry"
+          }
+        },
+        "resourceAnalysis": {
+          "$ref": "#/definitions/ResourceAnalysis"
+        }
+      }
+    },
+    "FacultyWorkloadEntry": {
+      "type": "object",
+      "description": "Faculty workload entry for combined stats",
+      "required": ["facultyName", "sem1", "sem3", "total"],
+      "additionalProperties": false,
+      "properties": {
+        "facultyName": {
+          "type": "string"
+        },
+        "sem1": {
+          "type": "object",
+          "description": "Semester 1 workload"
+        },
+        "sem3": {
+          "type": "object",
+          "description": "Semester 3 workload"
+        },
+        "total": {
+          "type": "object",
+          "description": "Total workload"
+        }
+      }
+    },
+    "ResourceAnalysis": {
+      "type": "object",
+      "description": "Combined resource analysis",
+      "required": ["lectureRoomSessions", "labSessions", "theorySessions", "practicalSessions", "tutorialSessions"],
+      "additionalProperties": false,
+      "properties": {
+        "lectureRoomSessions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "labSessions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "theorySessions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "practicalSessions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tutorialSessions": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

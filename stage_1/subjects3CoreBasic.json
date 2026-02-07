@@ -1,0 +1,26 @@
+{
+  "subjects": [
+      {
+        "subjectCode": "24MCA31",
+        "shortCode": "SE",
+        "title": "Software Engineering and Agile Methodologies",
+        "creditPattern": [3, 0, 0],
+        "totalCredits": 3,
+        "department": "MCA",
+        "semester": 3,
+        "isElective": false,
+        "type": "core"
+      },
+      {
+        "subjectCode": "24MCA32",
+        "shortCode": "ML",
+        "title": "Machine Learning",
+        "creditPattern": [3, 0, 1],
+        "totalCredits": 4,
+        "department": "MCA",
+        "semester": 3,
+        "isElective": false,
+        "type": "core"
+      }
+    ]
+}

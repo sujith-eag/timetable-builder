@@ -1,0 +1,81 @@
+{
+    "subjects": [
+      {
+        "subjectCode": "25MCA11",
+        "shortCode": "PwP",
+        "title": "Programming with Python",
+        "creditPattern": [3, 0, 1],
+        "totalCredits": 4,
+        "department": "MCA",
+        "semester": 1,
+        "isElective": false,
+        "type": "core"
+      },
+      {
+        "subjectCode": "25MCA12",
+        "shortCode": "CM",
+        "title": "Computational Mathematics",
+        "creditPattern": [2, 1, 0],
+        "totalCredits": 3,
+        "department": "MCA",
+        "semester": 1,
+        "isElective": false,
+        "type": "core"
+      },
+      {
+        "subjectCode": "25MCA13",
+        "shortCode": "OS",
+        "title": "Operating Systems and Shell Programming",
+        "creditPattern": [3, 0, 1],
+        "totalCredits": 4,
+        "department": "MCA",
+        "semester": 1,
+        "isElective": false,
+        "type": "core"
+      },
+      {
+        "subjectCode": "25MCA14",
+        "shortCode": "DBS",
+        "title": "Database Systems",
+        "creditPattern": [3, 0, 1],
+        "totalCredits": 4,
+        "department": "MCA",
+        "semester": 1,
+        "isElective": false,
+        "type": "core"
+      },
+      {
+        "subjectCode": "25MCA15",
+        "shortCode": "DS",
+        "title": "Data Structures",
+        "creditPattern": [3, 0, 0],
+        "totalCredits": 3,
+        "department": "MCA",
+        "semester": 1,
+        "isElective": false,
+        "type": "core"
+      },
+      {
+        "subjectCode": "25MCA16",
+        "shortCode": "DSL",
+        "title": "Data Structures using C",
+        "creditPattern": [0, 0, 1],
+        "totalCredits": 1,
+        "department": "MCA",
+        "semester": 1,
+        "isElective": false,
+        "type": "core"
+      },
+      {
+        "subjectCode": "25MCA17",
+        "shortCode": "WPL",
+        "title": "Web Programming",
+        "creditPattern": [0, 1, 2],
+        "totalCredits": 3,
+        "department": "MCA",
+        "semester": 1,
+        "isElective": false,
+        "type": "core"
+      }
+    ]
+}

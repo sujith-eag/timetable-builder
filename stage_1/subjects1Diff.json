@@ -1,0 +1,96 @@
+{
+  "subjects": [
+    {
+      "subjectCode": "25MCABC",
+      "title": "Mathematical Foundation",
+      "creditPattern": [0, 0, 0],
+      "totalCredits": 0,
+      "department": "MCA",
+      "semester": 1,
+      "isElective": false,
+      "type": "diff",
+      "priority": "low",
+      "assignedTo": "specific_students",
+      "studentCount": 15,
+      "flexible": true,
+      "components": [
+        {
+          "componentType": "tutorial",
+          "credits": 0,
+          "sessionDuration": 55,
+          "sessionsPerWeek": 3,
+          "mustBeInRoomType": "lecture",
+          "blockSizeSlots": 1,
+          "mustBeContiguous": false
+        }
+      ]
+    },
+    {
+      "subjectCode": "25MCAAEC1",
+      "shortCode": "TPSD",
+      "title": "Technical and Professional Competence Development",
+      "creditPattern": [0, 0, 0],
+      "totalCredits": 0,
+      "department": "MCA",
+      "semester": 1,
+      "type": "diff",
+      "priority": "high",
+      "assignedTo": "external_faculty",
+      "sections": ["A", "B"],
+      "components": [
+        {
+          "componentType": "theory",
+          "credits": 0,
+          "sessionDuration": 55,
+          "sessionsPerWeek": 1,
+          "mustBeInRoomType": "lecture",
+          "blockSizeSlots": 1,
+          "mustBeContiguous": false
+        },
+        {
+          "componentType": "tutorial",
+          "credits": 0,
+          "sessionDuration": 110,
+          "sessionsPerWeek": 1,
+          "mustBeInRoomType": "lecture",
+          "blockSizeSlots": 2,
+          "mustBeContiguous": true,
+          "fixedTiming": {
+            "day": "Wed",
+            "slots": ["S3", "S4"]
+          }
+        }
+      ]
+    },
+    {
+      "subjectCode": "PROCTOR_SEM1",
+      "shortCode": "Proctor",
+      "title": "Proctor Meeting",
+      "creditPattern": [0, 0, 0],
+      "totalCredits": 0,
+      "department": "MCA",
+      "semester": 1,
+      "isElective": false,
+      "type": "diff",
+      "priority": "high",
+      "assignedTo": "all_faculty",
+      "sections": ["A", "B"],
+      "fixedTiming": {
+        "day": "Mon",
+        "slots": ["S7"],
+        "duration": 55
+      },
+      "components": [
+        {
+          "componentType": "tutorial",
+          "credits": 0,
+          "sessionDuration": 55,
+          "sessionsPerWeek": 1,
+          "mustBeInRoomType": "lecture",
+          "blockSizeSlots": 1,
+          "mustBeContiguous": false
+        }
+      ]
+    }
+  ]
+}

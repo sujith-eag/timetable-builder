@@ -1,0 +1,901 @@
+{
+  "assignments": [
+    {
+      "assignment_id": "TA_24MCA31_TH_B_001",
+      "subject_code": "24MCA31",
+      "short_code": "SE",
+      "subject_title": "Software Engineering and Agile Methodologies",
+      "component_id": "24MCA31_TH",
+      "component_type": "theory",
+      "semester": 3,
+      "faculty_id": "SA",
+      "faculty_name": "Dr S. Ajitha",
+      "student_group_ids": [
+        "MCA_SEM3_B"
+      ],
+      "sections": [
+        "B"
+      ],
+      "session_duration": 55,
+      "sessions_per_week": 3,
+      "requires_room_type": "lecture",
+      "preferred_rooms": [
+        "AB-402",
+        "AB-411",
+        "AB-412"
+      ],
+      "requires_contiguous": false,
+      "block_size_slots": 1,
+      "priority": "high",
+      "is_elective": false,
+      "is_diff_subject": false,
+      "constraints": {
+        "student_group_conflicts": [
+          "ELEC_AD_B1",
+          "ELEC_SS_G1",
+          "MCA_SEM3_B"
+        ],
+        "faculty_conflicts": [
+          "SA"
+        ],
+        "fixed_day": null,
+        "fixed_slot": null,
+        "must_be_in_room": "AB-402"
+      }
+    },
+    {
+      "assignment_id": "TA_24MCA31_TH_A_002",
+      "subject_code": "24MCA31",
+      "short_code": "SE",
+      "subject_title": "Software Engineering and Agile Methodologies",
+      "component_id": "24MCA31_TH",
+      "component_type": "theory",
+      "semester": 3,
+      "faculty_id": "KR",
+      "faculty_name": "Mrs Komala R",
+      "student_group_ids": [
+        "MCA_SEM3_A"
+      ],
+      "sections": [
+        "A"
+      ],
+      "session_duration": 55,
+      "sessions_per_week": 3,
+      "requires_room_type": "lecture",
+      "preferred_rooms": [
+        "AB-411",
+        "AB-402",
+        "AB-412"
+      ],
+      "requires_contiguous": false,
+      "block_size_slots": 1,
+      "priority": "high",
+      "is_elective": false,
+      "is_diff_subject": false,
+      "constraints": {
+        "student_group_conflicts": [
+          "ELEC_AD_A1",
+          "ELEC_SS_G1",
+          "MCA_SEM3_A"
+        ],
+        "faculty_conflicts": [
+          "KR"
+        ],
+        "fixed_day": null,
+        "fixed_slot": null,
+        "must_be_in_room": "AB-411"
+      }
+    },
+    {
+      "assignment_id": "TA_24MCASS5_PR_AB_003",
+      "subject_code": "24MCASS5",
+      "short_code": "EH",
+      "subject_title": "Ethical Hacking",
+      "component_id": "24MCASS5_PR",
+      "component_type": "practical",
+      "semester": 3,
+      "faculty_id": "KR",
+      "faculty_name": "Mrs Komala R",
+      "student_group_ids": [
+        "ELEC_SS_G1"
+      ],
+      "sections": [
+        "A",
+        "B"
+      ],
+      "session_duration": 110,
+      "sessions_per_week": 1,
+      "requires_room_type": "lab",
+      "preferred_rooms": [
+        "LAB-1",
+        "LAB-2"
+      ],
+      "requires_contiguous": true,
+      "block_size_slots": 2,
+      "priority": "medium",
+      "is_elective": true,
+      "is_diff_subject": false,
+      "constraints": {
+        "student_group_conflicts": [
+          "ELEC_SS_G1",
+          "MCA_SEM3_A",
+          "MCA_SEM3_B"
+        ],
+        "faculty_conflicts": [
+          "KR"
+        ],
+        "fixed_day": null,
+        "fixed_slot": null,
+        "must_be_in_room": null
+      }
+    },
+    {
+      "assignment_id": "TA_24MCASS5_TH_AB_004",
+      "subject_code": "24MCASS5",
+      "short_code": "EH",
+      "subject_title": "Ethical Hacking",
+      "component_id": "24MCASS5_TH",
+      "component_type": "theory",
+      "semester": 3,
+      "faculty_id": "KR",
+      "faculty_name": "Mrs Komala R",
+      "student_group_ids": [
+        "ELEC_SS_G1"
+      ],
+      "sections": [
+        "A",
+        "B"
+      ],
+      "session_duration": 55,
+      "sessions_per_week": 2,
+      "requires_room_type": "lecture",
+      "preferred_rooms": [
+        "AB-411",
+        "AB-402",
+        "AB-412"
+      ],
+      "requires_contiguous": false,
+      "block_size_slots": 1,
+      "priority": "medium",
+      "is_elective": true,
+      "is_diff_subject": false,
+      "constraints": {
+        "student_group_conflicts": [
+          "ELEC_SS_G1",
+          "MCA_SEM3_A",
+          "MCA_SEM3_B"
+        ],
+        "faculty_conflicts": [
+          "KR"
+        ],
+        "fixed_day": null,
+        "fixed_slot": null,
+        "must_be_in_room": "AB-411"
+      }
+    },
+    {
+      "assignment_id": "TA_24MCA32_PR_A_005",
+      "subject_code": "24MCA32",
+      "short_code": "ML",
+      "subject_title": "Machine Learning",
+      "component_id": "24MCA32_PR",
+      "component_type": "practical",
+      "semester": 3,
+      "faculty_id": "RG",
+      "faculty_name": "Ms Geethanjali R",
+      "student_group_ids": [
+        "MCA_SEM3_A"
+      ],
+      "sections": [
+        "A"
+      ],
+      "session_duration": 110,
+      "sessions_per_week": 1,
+      "requires_room_type": "lab",
+      "preferred_rooms": [
+        "LAB-1"
+      ],
+      "requires_contiguous": true,
+      "block_size_slots": 2,
+      "priority": "high",
+      "is_elective": false,
+      "is_diff_subject": false,
+      "constraints": {
+        "student_group_conflicts": [
+          "ELEC_AD_A1",
+          "ELEC_SS_G1",
+          "MCA_SEM3_A"
+        ],
+        "faculty_conflicts": [
+          "RG"
+        ],
+        "fixed_day": null,
+        "fixed_slot": null,
+        "must_be_in_room": "LAB-1"
+      }
+    },
+    {
+      "assignment_id": "TA_24MCA32_PR_B_006",
+      "subject_code": "24MCA32",
+      "short_code": "ML",
+      "subject_title": "Machine Learning",
+      "component_id": "24MCA32_PR",
+      "component_type": "practical",
+      "semester": 3,
+      "faculty_id": "RG",
+      "faculty_name": "Ms Geethanjali R",
+      "student_group_ids": [
+        "MCA_SEM3_B"
+      ],
+      "sections": [
+        "B"
+      ],
+      "session_duration": 110,
+      "sessions_per_week": 1,
+      "requires_room_type": "lab",
+      "preferred_rooms": [
+        "LAB-2"
+      ],
+      "requires_contiguous": true,
+      "block_size_slots": 2,
+      "priority": "high",
+      "is_elective": false,
+      "is_diff_subject": false,
+      "constraints": {
+        "student_group_conflicts": [
+          "ELEC_AD_B1",
+          "ELEC_SS_G1",
+          "MCA_SEM3_B"
+        ],
+        "faculty_conflicts": [
+          "RG"
+        ],
+        "fixed_day": null,
+        "fixed_slot": null,
+        "must_be_in_room": "LAB-2"
+      }
+    },
+    {
+      "assignment_id": "TA_24MCA32_TH_A_007",
+      "subject_code": "24MCA32",
+      "short_code": "ML",
+      "subject_title": "Machine Learning",
+      "component_id": "24MCA32_TH",
+      "component_type": "theory",
+      "semester": 3,
+      "faculty_id": "RG",
+      "faculty_name": "Ms Geethanjali R",
+      "student_group_ids": [
+        "MCA_SEM3_A"
+      ],
+      "sections": [
+        "A"
+      ],
+      "session_duration": 55,
+      "sessions_per_week": 3,
+      "requires_room_type": "lecture",
+      "preferred_rooms": [
+        "AB-411",
+        "AB-402",
+        "AB-412"
+      ],
+      "requires_contiguous": false,
+      "block_size_slots": 1,
+      "priority": "high",
+      "is_elective": false,
+      "is_diff_subject": false,
+      "constraints": {
+        "student_group_conflicts": [
+          "ELEC_AD_A1",
+          "ELEC_SS_G1",
+          "MCA_SEM3_A"
+        ],
+        "faculty_conflicts": [
+          "RG"
+        ],
+        "fixed_day": null,
+        "fixed_slot": null,
+        "must_be_in_room": "AB-411"
+      }
+    },
+    {
+      "assignment_id": "TA_24MCA32_TH_B_008",
+      "subject_code": "24MCA32",
+      "short_code": "ML",
+      "subject_title": "Machine Learning",
+      "component_id": "24MCA32_TH",
+      "component_type": "theory",
+      "semester": 3,
+      "faculty_id": "RG",
+      "faculty_name": "Ms Geethanjali R",
+      "student_group_ids": [
+        "MCA_SEM3_B"
+      ],
+      "sections": [
+        "B"
+      ],
+      "session_duration": 55,
+      "sessions_per_week": 3,
+      "requires_room_type": "lecture",
+      "preferred_rooms": [
+        "AB-402",
+        "AB-411",
+        "AB-412"
+      ],
+      "requires_contiguous": false,
+      "block_size_slots": 1,
+      "priority": "high",
+      "is_elective": false,
+      "is_diff_subject": false,
+      "constraints": {
+        "student_group_conflicts": [
+          "ELEC_AD_B1",
+          "ELEC_SS_G1",
+          "MCA_SEM3_B"
+        ],
+        "faculty_conflicts": [
+          "RG"
+        ],
+        "fixed_day": null,
+        "fixed_slot": null,
+        "must_be_in_room": "AB-402"
+      }
+    },
+    {
+      "assignment_id": "TA_24MCAAD1_PR_A_009",
+      "subject_code": "24MCAAD1",
+      "short_code": "AIOT",
+      "subject_title": "Artificial Intelligence of Things",
+      "component_id": "24MCAAD1_PR",
+      "component_type": "practical",
+      "semester": 3,
+      "faculty_id": "MM",
+      "faculty_name": "Dr M. Manjunath",
+      "student_group_ids": [
+        "ELEC_AD_A1"
+      ],
+      "sections": [
+        "A"
+      ],
+      "session_duration": 110,
+      "sessions_per_week": 2,
+      "requires_room_type": "lab",
+      "preferred_rooms": [
+        "LAB-1"
+      ],
+      "requires_contiguous": true,
+      "block_size_slots": 2,
+      "priority": "medium",
+      "is_elective": true,
+      "is_diff_subject": false,
+      "constraints": {
+        "student_group_conflicts": [
+          "ELEC_AD_A1",
+          "MCA_SEM3_A"
+        ],
+        "faculty_conflicts": [
+          "MM"
+        ],
+        "fixed_day": null,
+        "fixed_slot": null,
+        "must_be_in_room": null
+      }
+    },
+    {
+      "assignment_id": "TA_24MCAAD1_PR_B_010",
+      "subject_code": "24MCAAD1",
+      "short_code": "AIOT",
+      "subject_title": "Artificial Intelligence of Things",
+      "component_id": "24MCAAD1_PR",
+      "component_type": "practical",
+      "semester": 3,
+      "faculty_id": "MM",
+      "faculty_name": "Dr M. Manjunath",
+      "student_group_ids": [
+        "ELEC_AD_B1"
+      ],
+      "sections": [
+        "B"
+      ],
+      "session_duration": 110,
+      "sessions_per_week": 2,
+      "requires_room_type": "lab",
+      "preferred_rooms": [
+        "LAB-1"
+      ],
+      "requires_contiguous": true,
+      "block_size_slots": 2,
+      "priority": "medium",
+      "is_elective": true,
+      "is_diff_subject": false,
+      "constraints": {
+        "student_group_conflicts": [
+          "ELEC_AD_B1",
+          "MCA_SEM3_B"
+        ],
+        "faculty_conflicts": [
+          "MM"
+        ],
+        "fixed_day": null,
+        "fixed_slot": null,
+        "must_be_in_room": null
+      }
+    },
+    {
+      "assignment_id": "TA_24MCAAD1_TU_AB_011",
+      "subject_code": "24MCAAD1",
+      "short_code": "AIOT",
+      "subject_title": "Artificial Intelligence of Things",
+      "component_id": "24MCAAD1_TU",
+      "component_type": "tutorial",
+      "semester": 3,
+      "faculty_id": "MM",
+      "faculty_name": "Dr M. Manjunath",
+      "student_group_ids": [
+        "ELEC_AD_A1",
+        "ELEC_AD_B1"
+      ],
+      "sections": [
+        "A",
+        "B"
+      ],
+      "session_duration": 110,
+      "sessions_per_week": 1,
+      "requires_room_type": "lab",
+      "preferred_rooms": [
+        "AB-402",
+        "AB-411",
+        "AB-412",
+        "AB-413"
+      ],
+      "requires_contiguous": true,
+      "block_size_slots": 2,
+      "priority": "medium",
+      "is_elective": true,
+      "is_diff_subject": false,
+      "constraints": {
+        "student_group_conflicts": [
+          "ELEC_AD_A1",
+          "ELEC_AD_B1",
+          "MCA_SEM3_A",
+          "MCA_SEM3_B"
+        ],
+        "faculty_conflicts": [
+          "MM"
+        ],
+        "fixed_day": null,
+        "fixed_slot": null,
+        "must_be_in_room": null
+      }
+    },
+    {
+      "assignment_id": "TA_24MCAAD4_PR_A_012",
+      "subject_code": "24MCAAD4",
+      "short_code": "NLP",
+      "subject_title": "Natural Language Processing",
+      "component_id": "24MCAAD4_PR",
+      "component_type": "practical",
+      "semester": 3,
+      "faculty_id": "DEG",
+      "faculty_name": "Dr D. Evangelin Geetha",
+      "student_group_ids": [
+        "ELEC_AD_A1"
+      ],
+      "sections": [
+        "A"
+      ],
+      "session_duration": 110,
+      "sessions_per_week": 1,
+      "requires_room_type": "lab",
+      "preferred_rooms": [
+        "LAB-1"
+      ],
+      "requires_contiguous": true,
+      "block_size_slots": 2,
+      "priority": "medium",
+      "is_elective": true,
+      "is_diff_subject": false,
+      "constraints": {
+        "student_group_conflicts": [
+          "ELEC_AD_A1",
+          "MCA_SEM3_A"
+        ],
+        "faculty_conflicts": [
+          "DEG"
+        ],
+        "fixed_day": null,
+        "fixed_slot": null,
+        "must_be_in_room": null
+      }
+    },
+    {
+      "assignment_id": "TA_24MCAAD4_PR_B_013",
+      "subject_code": "24MCAAD4",
+      "short_code": "NLP",
+      "subject_title": "Natural Language Processing",
+      "component_id": "24MCAAD4_PR",
+      "component_type": "practical",
+      "semester": 3,
+      "faculty_id": "DEG",
+      "faculty_name": "Dr D. Evangelin Geetha",
+      "student_group_ids": [
+        "ELEC_AD_B1"
+      ],
+      "sections": [
+        "B"
+      ],
+      "session_duration": 110,
+      "sessions_per_week": 1,
+      "requires_room_type": "lab",
+      "preferred_rooms": [
+        "LAB-1"
+      ],
+      "requires_contiguous": true,
+      "block_size_slots": 2,
+      "priority": "medium",
+      "is_elective": true,
+      "is_diff_subject": false,
+      "constraints": {
+        "student_group_conflicts": [
+          "ELEC_AD_B1",
+          "MCA_SEM3_B"
+        ],
+        "faculty_conflicts": [
+          "DEG"
+        ],
+        "fixed_day": null,
+        "fixed_slot": null,
+        "must_be_in_room": null
+      }
+    },
+    {
+      "assignment_id": "TA_24MCAAD4_TH_AB_014",
+      "subject_code": "24MCAAD4",
+      "short_code": "NLP",
+      "subject_title": "Natural Language Processing",
+      "component_id": "24MCAAD4_TH",
+      "component_type": "theory",
+      "semester": 3,
+      "faculty_id": "DEG",
+      "faculty_name": "Dr D. Evangelin Geetha",
+      "student_group_ids": [
+        "ELEC_AD_A1",
+        "ELEC_AD_B1"
+      ],
+      "sections": [
+        "A",
+        "B"
+      ],
+      "session_duration": 55,
+      "sessions_per_week": 2,
+      "requires_room_type": "lecture",
+      "preferred_rooms": [
+        "AB-402",
+        "AB-411",
+        "AB-412"
+      ],
+      "requires_contiguous": false,
+      "block_size_slots": 1,
+      "priority": "medium",
+      "is_elective": true,
+      "is_diff_subject": false,
+      "constraints": {
+        "student_group_conflicts": [
+          "ELEC_AD_A1",
+          "ELEC_AD_B1",
+          "MCA_SEM3_A",
+          "MCA_SEM3_B"
+        ],
+        "faculty_conflicts": [
+          "DEG"
+        ],
+        "fixed_day": null,
+        "fixed_slot": null,
+        "must_be_in_room": "AB-402"
+      }
+    },
+    {
+      "assignment_id": "TA_24MCAAD5_PR_A_015",
+      "subject_code": "24MCAAD5",
+      "short_code": "GenAI",
+      "subject_title": "Generative AI and Prompt Engineering",
+      "component_id": "24MCAAD5_PR",
+      "component_type": "practical",
+      "semester": 3,
+      "faculty_id": "DU",
+      "faculty_name": "Ms Deepali U",
+      "student_group_ids": [
+        "ELEC_AD_A1"
+      ],
+      "sections": [
+        "A"
+      ],
+      "session_duration": 110,
+      "sessions_per_week": 2,
+      "requires_room_type": "lab",
+      "preferred_rooms": [
+        "LAB-1"
+      ],
+      "requires_contiguous": true,
+      "block_size_slots": 2,
+      "priority": "medium",
+      "is_elective": true,
+      "is_diff_subject": false,
+      "constraints": {
+        "student_group_conflicts": [
+          "ELEC_AD_A1",
+          "MCA_SEM3_A"
+        ],
+        "faculty_conflicts": [
+          "DU"
+        ],
+        "fixed_day": null,
+        "fixed_slot": null,
+        "must_be_in_room": null
+      }
+    },
+    {
+      "assignment_id": "TA_24MCAAD5_PR_B_016",
+      "subject_code": "24MCAAD5",
+      "short_code": "GenAI",
+      "subject_title": "Generative AI and Prompt Engineering",
+      "component_id": "24MCAAD5_PR",
+      "component_type": "practical",
+      "semester": 3,
+      "faculty_id": "DU",
+      "faculty_name": "Ms Deepali U",
+      "student_group_ids": [
+        "ELEC_AD_B1"
+      ],
+      "sections": [
+        "B"
+      ],
+      "session_duration": 110,
+      "sessions_per_week": 2,
+      "requires_room_type": "lab",
+      "preferred_rooms": [
+        "LAB-1"
+      ],
+      "requires_contiguous": true,
+      "block_size_slots": 2,
+      "priority": "medium",
+      "is_elective": true,
+      "is_diff_subject": false,
+      "constraints": {
+        "student_group_conflicts": [
+          "ELEC_AD_B1",
+          "MCA_SEM3_B"
+        ],
+        "faculty_conflicts": [
+          "DU"
+        ],
+        "fixed_day": null,
+        "fixed_slot": null,
+        "must_be_in_room": null
+      }
+    },
+    {
+      "assignment_id": "TA_24MCAAD5_TU_AB_017",
+      "subject_code": "24MCAAD5",
+      "short_code": "GenAI",
+      "subject_title": "Generative AI and Prompt Engineering",
+      "component_id": "24MCAAD5_TU",
+      "component_type": "tutorial",
+      "semester": 3,
+      "faculty_id": "DU",
+      "faculty_name": "Ms Deepali U",
+      "student_group_ids": [
+        "ELEC_AD_A1",
+        "ELEC_AD_B1"
+      ],
+      "sections": [
+        "A",
+        "B"
+      ],
+      "session_duration": 110,
+      "sessions_per_week": 1,
+      "requires_room_type": "lab",
+      "preferred_rooms": [
+        "AB-402",
+        "AB-411",
+        "AB-412",
+        "AB-413"
+      ],
+      "requires_contiguous": true,
+      "block_size_slots": 2,
+      "priority": "medium",
+      "is_elective": true,
+      "is_diff_subject": false,
+      "constraints": {
+        "student_group_conflicts": [
+          "ELEC_AD_A1",
+          "ELEC_AD_B1",
+          "MCA_SEM3_A",
+          "MCA_SEM3_B"
+        ],
+        "faculty_conflicts": [
+          "DU"
+        ],
+        "fixed_day": null,
+        "fixed_slot": null,
+        "must_be_in_room": null
+      }
+    },
+    {
+      "assignment_id": "TA_24MCASS2_PR_AB_018",
+      "subject_code": "24MCASS2",
+      "short_code": "DevOps",
+      "subject_title": "DevOps",
+      "component_id": "24MCASS2_PR",
+      "component_type": "practical",
+      "semester": 3,
+      "faculty_id": "PNP",
+      "faculty_name": "Dr Preethi N Patil",
+      "student_group_ids": [
+        "ELEC_SS_G1"
+      ],
+      "sections": [
+        "A",
+        "B"
+      ],
+      "session_duration": 110,
+      "sessions_per_week": 2,
+      "requires_room_type": "lab",
+      "preferred_rooms": [
+        "LAB-1",
+        "LAB-2"
+      ],
+      "requires_contiguous": true,
+      "block_size_slots": 2,
+      "priority": "medium",
+      "is_elective": true,
+      "is_diff_subject": false,
+      "constraints": {
+        "student_group_conflicts": [
+          "ELEC_SS_G1",
+          "MCA_SEM3_A",
+          "MCA_SEM3_B"
+        ],
+        "faculty_conflicts": [
+          "PNP"
+        ],
+        "fixed_day": null,
+        "fixed_slot": null,
+        "must_be_in_room": null
+      }
+    },
+    {
+      "assignment_id": "TA_24MCASS2_TU_AB_019",
+      "subject_code": "24MCASS2",
+      "short_code": "DevOps",
+      "subject_title": "DevOps",
+      "component_id": "24MCASS2_TU",
+      "component_type": "tutorial",
+      "semester": 3,
+      "faculty_id": "PNP",
+      "faculty_name": "Dr Preethi N Patil",
+      "student_group_ids": [
+        "ELEC_SS_G1"
+      ],
+      "sections": [
+        "A",
+        "B"
+      ],
+      "session_duration": 110,
+      "sessions_per_week": 1,
+      "requires_room_type": "lab",
+      "preferred_rooms": [
+        "AB-402",
+        "AB-411",
+        "AB-412",
+        "AB-413"
+      ],
+      "requires_contiguous": true,
+      "block_size_slots": 2,
+      "priority": "medium",
+      "is_elective": true,
+      "is_diff_subject": false,
+      "constraints": {
+        "student_group_conflicts": [
+          "ELEC_SS_G1",
+          "MCA_SEM3_A",
+          "MCA_SEM3_B"
+        ],
+        "faculty_conflicts": [
+          "PNP"
+        ],
+        "fixed_day": null,
+        "fixed_slot": null,
+        "must_be_in_room": null
+      }
+    },
+    {
+      "assignment_id": "TA_24MCASS3_PR_AB_020",
+      "subject_code": "24MCASS3",
+      "short_code": "CC",
+      "subject_title": "Cloud Computing",
+      "component_id": "24MCASS3_PR",
+      "component_type": "practical",
+      "semester": 3,
+      "faculty_id": "SK",
+      "faculty_name": "Mrs Savitha K",
+      "student_group_ids": [
+        "ELEC_SS_G1"
+      ],
+      "sections": [
+        "A",
+        "B"
+      ],
+      "session_duration": 110,
+      "sessions_per_week": 2,
+      "requires_room_type": "lab",
+      "preferred_rooms": [
+        "LAB-1",
+        "LAB-2"
+      ],
+      "requires_contiguous": true,
+      "block_size_slots": 2,
+      "priority": "medium",
+      "is_elective": true,
+      "is_diff_subject": false,
+      "constraints": {
+        "student_group_conflicts": [
+          "ELEC_SS_G1",
+          "MCA_SEM3_A",
+          "MCA_SEM3_B"
+        ],
+        "faculty_conflicts": [
+          "SK"
+        ],
+        "fixed_day": null,
+        "fixed_slot": null,
+        "must_be_in_room": null
+      }
+    },
+    {
+      "assignment_id": "TA_24MCASS3_TU_AB_021",
+      "subject_code": "24MCASS3",
+      "short_code": "CC",
+      "subject_title": "Cloud Computing",
+      "component_id": "24MCASS3_TU",
+      "component_type": "tutorial",
+      "semester": 3,
+      "faculty_id": "SK",
+      "faculty_name": "Mrs Savitha K",
+      "student_group_ids": [
+        "ELEC_SS_G1"
+      ],
+      "sections": [
+        "A",
+        "B"
+      ],
+      "session_duration": 110,
+      "sessions_per_week": 1,
+      "requires_room_type": "lab",
+      "preferred_rooms": [
+        "AB-402",
+        "AB-411",
+        "AB-412",
+        "AB-413"
+      ],
+      "requires_contiguous": true,
+      "block_size_slots": 2,
+      "priority": "medium",
+      "is_elective": true,
+      "is_diff_subject": false,
+      "constraints": {
+        "student_group_conflicts": [
+          "ELEC_SS_G1",
+          "MCA_SEM3_A",
+          "MCA_SEM3_B"
+        ],
+        "faculty_conflicts": [
+          "SK"
+        ],
+        "fixed_day": null,
+        "fixed_slot": null,
+        "must_be_in_room": null
+      }
+    }
+  ]
+}

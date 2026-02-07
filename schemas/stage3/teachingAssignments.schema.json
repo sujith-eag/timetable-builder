@@ -1,0 +1,283 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://timetable.eaglecampus.edu/schemas/stage3/teachingAssignments.schema.json",
+  "title": "Stage 3 Teaching Assignments File",
+  "description": "Schema for teachingAssignments_sem[N].json - teaching assignments for a semester",
+  "type": "object",
+  "required": ["metadata", "assignments", "statistics"],
+  "additionalProperties": false,
+  "properties": {
+    "metadata": {
+      "$ref": "#/definitions/AssignmentMetadata"
+    },
+    "assignments": {
+      "type": "array",
+      "description": "List of teaching assignments",
+      "items": {
+        "$ref": "#/definitions/TeachingAssignment"
+      }
+    },
+    "statistics": {
+      "$ref": "#/definitions/AssignmentStatistics"
+    }
+  },
+  "definitions": {
+    "AssignmentMetadata": {
+      "type": "object",
+      "description": "Metadata about the assignments file",
+      "required": ["semester", "generatedAt", "totalAssignments", "generator"],
+      "additionalProperties": false,
+      "properties": {
+        "semester": {
+          "type": "integer",
+          "description": "Semester number",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "generatedAt": {
+          "type": "string",
+          "description": "Generation timestamp",
+          "format": "date-time"
+        },
+        "totalAssignments": {
+          "type": "integer",
+          "description": "Total number of assignments",
+          "minimum": 0
+        },
+        "generator": {
+          "type": "string",
+          "description": "Script/tool that generated this file"
+        }
+      }
+    },
+    "TeachingAssignment": {
+      "type": "object",
+      "description": "A single teaching assignment",
+      "required": ["assignmentId", "subjectCode", "subjectName", "facultyId", "facultyName", "componentType", "studentGroups", "sessionsPerWeek", "sessionDuration", "roomType", "priority"],
+      "additionalProperties": false,
+      "properties": {
+        "assignmentId": {
+          "type": "string",
+          "description": "Unique assignment identifier",
+          "minLength": 1
+        },
+        "subjectCode": {
+          "type": "string",
+          "description": "Subject code",
+          "minLength": 1
+        },
+        "subjectName": {
+          "type": "string",
+          "description": "Subject name",
+          "minLength": 1
+        },
+        "facultyId": {
+          "type": "string",
+          "description": "Faculty identifier",
+          "minLength": 1
+        },
+        "facultyName": {
+          "type": "string",
+          "description": "Faculty full name",
+          "minLength": 1
+        },
+        "componentType": {
+          "type": "string",
+          "description": "Type of component",
+          "enum": ["theory", "tutorial", "practical"]
+        },
+        "studentGroupIds": {
+          "type": "array",
+          "description": "Student groups for this assignment",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "sessionsPerWeek": {
+          "type": "integer",
+          "description": "Number of sessions per week",
+          "minimum": 1
+        },
+        "sessionDuration": {
+          "type": "integer",
+          "description": "Duration in minutes per session",
+          "minimum": 1
+        },
+        "hoursPerWeek": {
+          "type": "number",
+          "description": "Total hours per week",
+          "minimum": 0
+        },
+        "roomType": {
+          "type": "string",
+          "description": "Type of room required",
+          "enum": ["lecture", "lab"]
+        },
+        "priority": {
+          "type": "string",
+          "description": "Scheduling priority",
+          "enum": ["fixed", "high", "medium", "low"]
+        },
+        "type": {
+          "type": "string",
+          "description": "Subject type",
+          "enum": ["core", "elective", "mandatory_elective", "diff"]
+        },
+        "constraints": {
+          "$ref": "#/definitions/AssignmentConstraints"
+        }
+      }
+    },
+    "AssignmentConstraints": {
+      "type": "object",
+      "description": "Scheduling constraints for an assignment",
+      "additionalProperties": false,
+      "properties": {
+        "fixedTiming": {
+          "type": "object",
+          "description": "Fixed timing constraint",
+          "required": ["day", "slots"],
+          "additionalProperties": false,
+          "properties": {
+            "day": {
+              "type": "string",
+              "enum": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+            },
+            "slots": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            }
+          }
+        },
+        "preAllocatedRoom": {
+          "type": "string",
+          "description": "Pre-allocated room ID"
+        },
+        "roomPreference": {
+          "type": "array",
+          "description": "Preferred rooms in order",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cannotOverlapWith": {
+          "type": "array",
+          "description": "Assignments that cannot overlap",
+          "items": {
+            "type": "string"
+          }
+        },
+        "mustFollowAfter": {
+          "type": "string",
+          "description": "Assignment that must precede this one"
+        },
+        "preferredDays": {
+          "type": "array",
+          "description": "Preferred days of week",
+          "items": {
+            "type": "string",
+            "enum": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+          }
+        },
+        "avoidDays": {
+          "type": "array",
+          "description": "Days to avoid",
+          "items": {
+            "type": "string",
+            "enum": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+          }
+        },
+        "preferredSlots": {
+          "type": "array",
+          "description": "Preferred time slots",
+          "items": {
+            "type": "string"
+          }
+        },
+        "avoidSlots": {
+          "type": "array",
+          "description": "Slots to avoid",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "AssignmentStatistics": {
+      "type": "object",
+      "description": "Statistics about the assignments",
+      "required": ["totalAssignments", "byType", "byComponentType", "byPriority", "totalSessions", "totalWeeklyHours", "facultyAssignments", "roomRequirements", "withFixedTiming", "withPreAllocatedRooms", "withRoomPreferences"],
+      "additionalProperties": false,
+      "properties": {
+        "totalAssignments": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "byType": {
+          "type": "object",
+          "description": "Count by subject type",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "byComponentType": {
+          "type": "object",
+          "description": "Count by component type",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "byPriority": {
+          "type": "object",
+          "description": "Count by priority level",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "totalSessions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "totalWeeklyHours": {
+          "type": "number",
+          "minimum": 0
+        },
+        "facultyAssignments": {
+          "type": "object",
+          "description": "Count of assignments per faculty",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "roomRequirements": {
+          "type": "object",
+          "description": "Count by room type",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "withFixedTiming": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "withPreAllocatedRooms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "withRoomPreferences": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

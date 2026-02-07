@@ -1,0 +1,22 @@
+{
+    "facultyBasic": [
+        {
+            "facultyId": "FAC001",
+            "name": "Dr. John Smith",
+            "department": "Computer Science",
+            "designation": "Professor"
+        },
+        {
+            "facultyId": "FAC002",
+            "name": "Dr. Jane Doe",
+            "department": "Computer Science",
+            "designation": "Associate Professor"
+        },
+        {
+            "facultyId": "FAC003",
+            "name": "Mr. Robert Brown",
+            "department": "Computer Science",
+            "designation": "Assistant Professor"
+        }
+    ]
+}

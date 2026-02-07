@@ -1,0 +1,798 @@
+{
+  "faculty": [
+    {
+      "faculty_id": "SA",
+      "name": "Dr S. Ajitha",
+      "designation": "Professor",
+      "department": "MCA",
+      "primary_assignments": [
+        {
+          "subject_code": "24MCA31",
+          "semester": 3,
+          "sections": [
+            "B"
+          ],
+          "student_group_ids": [
+            "MCA_SEM3_B"
+          ],
+          "component_ids": [
+            "24MCA31_TH"
+          ],
+          "component_types": [
+            "theory"
+          ],
+          "role": "primary",
+          "weekly_hours_per_section": 3,
+          "total_weekly_hours": 3,
+          "sessions_per_week_per_section": 3,
+          "total_sessions_per_week": 3
+        }
+      ],
+      "supporting_assignments": [
+        {
+          "subject_code": "24MCASS5",
+          "semester": 3,
+          "role": "supporting"
+        }
+      ],
+      "workload_stats": {
+        "theory_hours": 3,
+        "tutorial_hours": 0,
+        "practical_hours": 0,
+        "total_sessions": 3,
+        "total_weekly_hours": 3
+      }
+    },
+    {
+      "faculty_id": "KR",
+      "name": "Mrs Komala R",
+      "designation": "Assistant Professor",
+      "department": "MCA",
+      "primary_assignments": [
+        {
+          "subject_code": "24MCA31",
+          "semester": 3,
+          "sections": [
+            "A"
+          ],
+          "student_group_ids": [
+            "MCA_SEM3_A"
+          ],
+          "component_ids": [
+            "24MCA31_TH"
+          ],
+          "component_types": [
+            "theory"
+          ],
+          "role": "primary",
+          "weekly_hours_per_section": 3,
+          "total_weekly_hours": 3,
+          "sessions_per_week_per_section": 3,
+          "total_sessions_per_week": 3
+        },
+        {
+          "subject_code": "24MCASS5",
+          "semester": 3,
+          "sections": [
+            "A",
+            "B"
+          ],
+          "student_group_ids": [
+            "ELEC_SS_G1"
+          ],
+          "component_ids": [
+            "24MCASS5_TH",
+            "24MCASS5_PR"
+          ],
+          "component_types": [
+            "theory",
+            "practical"
+          ],
+          "role": "primary",
+          "weekly_hours_per_section": 4,
+          "total_weekly_hours": 4,
+          "sessions_per_week_per_section": 3,
+          "total_sessions_per_week": 3
+        }
+      ],
+      "supporting_assignments": [
+        {
+          "subject_code": "24MCAAD1",
+          "semester": 3,
+          "role": "supporting"
+        },
+        {
+          "subject_code": "24MCAAD5",
+          "semester": 3,
+          "role": "supporting"
+        },
+        {
+          "subject_code": "25MCA16",
+          "semester": 1,
+          "role": "supporting"
+        }
+      ],
+      "workload_stats": {
+        "theory_hours": 7,
+        "tutorial_hours": 0,
+        "practical_hours": 4,
+        "total_sessions": 9,
+        "total_weekly_hours": 11
+      }
+    },
+    {
+      "faculty_id": "RG",
+      "name": "Ms Geethanjali R",
+      "designation": "Assistant Professor",
+      "department": "MCA",
+      "primary_assignments": [
+        {
+          "subject_code": "24MCA32",
+          "semester": 3,
+          "sections": [
+            "A",
+            "B"
+          ],
+          "student_group_ids": [
+            "MCA_SEM3_A",
+            "MCA_SEM3_B"
+          ],
+          "component_ids": [
+            "24MCA32_TH",
+            "24MCA32_PR"
+          ],
+          "component_types": [
+            "theory",
+            "practical"
+          ],
+          "role": "primary",
+          "weekly_hours_per_section": 5,
+          "total_weekly_hours": 10,
+          "sessions_per_week_per_section": 4,
+          "total_sessions_per_week": 8
+        }
+      ],
+      "supporting_assignments": [
+        {
+          "subject_code": "25MCA11",
+          "semester": 1,
+          "role": "supporting"
+        },
+        {
+          "subject_code": "25MCA12",
+          "semester": 1,
+          "role": "supporting"
+        },
+        {
+          "subject_code": "25MCA14",
+          "semester": 1,
+          "role": "supporting"
+        }
+      ],
+      "workload_stats": {
+        "theory_hours": 6,
+        "tutorial_hours": 0,
+        "practical_hours": 4,
+        "total_sessions": 8,
+        "total_weekly_hours": 10
+      }
+    },
+    {
+      "faculty_id": "MM",
+      "name": "Dr M. Manjunath",
+      "designation": "Associate Professor",
+      "department": "MCA",
+      "primary_assignments": [
+        {
+          "subject_code": "24MCAAD1",
+          "semester": 3,
+          "sections": [
+            "A",
+            "B"
+          ],
+          "student_group_ids": [
+            "ELEC_AD_A1",
+            "ELEC_AD_B1"
+          ],
+          "component_ids": [
+            "24MCAAD1_TU",
+            "24MCAAD1_PR"
+          ],
+          "component_types": [
+            "tutorial",
+            "practical"
+          ],
+          "role": "primary",
+          "weekly_hours_per_section": 6,
+          "total_weekly_hours": 12,
+          "sessions_per_week_per_section": 3,
+          "total_sessions_per_week": 6
+        },
+        {
+          "subject_code": "25MCA15",
+          "semester": 1,
+          "sections": [
+            "B"
+          ],
+          "student_group_ids": [
+            "MCA_SEM1_B"
+          ],
+          "component_ids": [
+            "25MCA15_TH"
+          ],
+          "component_types": [
+            "theory"
+          ],
+          "role": "primary",
+          "weekly_hours_per_section": 3,
+          "total_weekly_hours": 3,
+          "sessions_per_week_per_section": 3,
+          "total_sessions_per_week": 3
+        },
+        {
+          "subject_code": "25MCA16",
+          "semester": 1,
+          "sections": [
+            "B"
+          ],
+          "student_group_ids": [
+            "MCA_SEM1_B"
+          ],
+          "component_ids": [
+            "25MCA16_PR"
+          ],
+          "component_types": [
+            "practical"
+          ],
+          "role": "primary",
+          "weekly_hours_per_section": 2,
+          "total_weekly_hours": 2,
+          "sessions_per_week_per_section": 1,
+          "total_sessions_per_week": 1
+        }
+      ],
+      "supporting_assignments": [
+        {
+          "subject_code": "25MCA17",
+          "semester": 1,
+          "role": "supporting"
+        }
+      ],
+      "workload_stats": {
+        "theory_hours": 3,
+        "tutorial_hours": 4,
+        "practical_hours": 10,
+        "total_sessions": 10,
+        "total_weekly_hours": 17
+      }
+    },
+    {
+      "faculty_id": "DEG",
+      "name": "Dr D. Evangelin Geetha",
+      "designation": "Professor",
+      "department": "MCA",
+      "primary_assignments": [
+        {
+          "subject_code": "24MCAAD4",
+          "semester": 3,
+          "sections": [
+            "A",
+            "B"
+          ],
+          "student_group_ids": [
+            "ELEC_AD_A1",
+            "ELEC_AD_B1"
+          ],
+          "component_ids": [
+            "24MCAAD4_TH",
+            "24MCAAD4_PR"
+          ],
+          "component_types": [
+            "theory",
+            "practical"
+          ],
+          "role": "primary",
+          "weekly_hours_per_section": 4,
+          "total_weekly_hours": 8,
+          "sessions_per_week_per_section": 3,
+          "total_sessions_per_week": 6
+        }
+      ],
+      "supporting_assignments": [
+        {
+          "subject_code": "24MCAAD5",
+          "semester": 3,
+          "role": "supporting"
+        }
+      ],
+      "workload_stats": {
+        "theory_hours": 4,
+        "tutorial_hours": 0,
+        "practical_hours": 4,
+        "total_sessions": 6,
+        "total_weekly_hours": 8
+      }
+    },
+    {
+      "faculty_id": "DU",
+      "name": "Ms Deepali U",
+      "designation": "Assistant Professor",
+      "department": "MCA",
+      "primary_assignments": [
+        {
+          "subject_code": "24MCAAD5",
+          "semester": 3,
+          "sections": [
+            "A",
+            "B"
+          ],
+          "student_group_ids": [
+            "ELEC_AD_A1",
+            "ELEC_AD_B1"
+          ],
+          "component_ids": [
+            "24MCAAD5_TU",
+            "24MCAAD5_PR"
+          ],
+          "component_types": [
+            "tutorial",
+            "practical"
+          ],
+          "role": "primary",
+          "weekly_hours_per_section": 6,
+          "total_weekly_hours": 12,
+          "sessions_per_week_per_section": 3,
+          "total_sessions_per_week": 6
+        }
+      ],
+      "supporting_assignments": [
+        {
+          "subject_code": "25MCA11",
+          "semester": 1,
+          "role": "supporting"
+        },
+        {
+          "subject_code": "25MCA17",
+          "semester": 1,
+          "role": "supporting"
+        }
+      ],
+      "workload_stats": {
+        "theory_hours": 0,
+        "tutorial_hours": 4,
+        "practical_hours": 8,
+        "total_sessions": 6,
+        "total_weekly_hours": 12
+      }
+    },
+    {
+      "faculty_id": "PNP",
+      "name": "Dr Preethi N Patil",
+      "designation": "Associate Professor",
+      "department": "MCA",
+      "primary_assignments": [
+        {
+          "subject_code": "24MCASS2",
+          "semester": 3,
+          "sections": [
+            "A",
+            "B"
+          ],
+          "student_group_ids": [
+            "ELEC_SS_G1"
+          ],
+          "component_ids": [
+            "24MCASS2_TU",
+            "24MCASS2_PR"
+          ],
+          "component_types": [
+            "tutorial",
+            "practical"
+          ],
+          "role": "primary",
+          "weekly_hours_per_section": 6,
+          "total_weekly_hours": 6,
+          "sessions_per_week_per_section": 3,
+          "total_sessions_per_week": 3
+        },
+        {
+          "subject_code": "25MCA12",
+          "semester": 1,
+          "sections": [
+            "A",
+            "B"
+          ],
+          "student_group_ids": [
+            "MCA_SEM1_A",
+            "MCA_SEM1_B"
+          ],
+          "component_ids": [
+            "25MCA12_TH",
+            "25MCA12_TU"
+          ],
+          "component_types": [
+            "theory",
+            "tutorial"
+          ],
+          "role": "primary",
+          "weekly_hours_per_section": 4,
+          "total_weekly_hours": 8,
+          "sessions_per_week_per_section": 3,
+          "total_sessions_per_week": 6
+        }
+      ],
+      "supporting_assignments": [
+        {
+          "subject_code": "25MCA13",
+          "semester": 1,
+          "role": "supporting"
+        }
+      ],
+      "workload_stats": {
+        "theory_hours": 4,
+        "tutorial_hours": 8,
+        "practical_hours": 8,
+        "total_sessions": 12,
+        "total_weekly_hours": 20
+      }
+    },
+    {
+      "faculty_id": "SK",
+      "name": "Mrs Savitha K",
+      "designation": "Assistant Professor",
+      "department": "MCA",
+      "primary_assignments": [
+        {
+          "subject_code": "24MCASS3",
+          "semester": 3,
+          "sections": [
+            "A",
+            "B"
+          ],
+          "student_group_ids": [
+            "ELEC_SS_G1"
+          ],
+          "component_ids": [
+            "24MCASS3_TU",
+            "24MCASS3_PR"
+          ],
+          "component_types": [
+            "tutorial",
+            "practical"
+          ],
+          "role": "primary",
+          "weekly_hours_per_section": 6,
+          "total_weekly_hours": 6,
+          "sessions_per_week_per_section": 3,
+          "total_sessions_per_week": 3
+        },
+        {
+          "subject_code": "25MCA14",
+          "semester": 1,
+          "sections": [
+            "A"
+          ],
+          "student_group_ids": [
+            "MCA_SEM1_A"
+          ],
+          "component_ids": [
+            "25MCA14_TH",
+            "25MCA14_PR"
+          ],
+          "component_types": [
+            "theory",
+            "practical"
+          ],
+          "role": "primary",
+          "weekly_hours_per_section": 5,
+          "total_weekly_hours": 5,
+          "sessions_per_week_per_section": 4,
+          "total_sessions_per_week": 4
+        }
+      ],
+      "supporting_assignments": [
+        {
+          "subject_code": "25MCA11",
+          "semester": 1,
+          "role": "supporting"
+        },
+        {
+          "subject_code": "25MCA13",
+          "semester": 1,
+          "role": "supporting"
+        },
+        {
+          "subject_code": "25MCA16",
+          "semester": 1,
+          "role": "supporting"
+        }
+      ],
+      "workload_stats": {
+        "theory_hours": 3,
+        "tutorial_hours": 4,
+        "practical_hours": 10,
+        "total_sessions": 10,
+        "total_weekly_hours": 17
+      }
+    },
+    {
+      "faculty_id": "SM",
+      "name": "Ms Swathi M",
+      "designation": "Assistant Professor",
+      "department": "MCA",
+      "primary_assignments": [
+        {
+          "subject_code": "25MCA11",
+          "semester": 1,
+          "sections": [
+            "A"
+          ],
+          "student_group_ids": [
+            "MCA_SEM1_A"
+          ],
+          "component_ids": [
+            "25MCA11_TH",
+            "25MCA11_PR"
+          ],
+          "component_types": [
+            "theory",
+            "practical"
+          ],
+          "role": "primary",
+          "weekly_hours_per_section": 5,
+          "total_weekly_hours": 5,
+          "sessions_per_week_per_section": 4,
+          "total_sessions_per_week": 4
+        },
+        {
+          "subject_code": "25MCA15",
+          "semester": 1,
+          "sections": [
+            "A"
+          ],
+          "student_group_ids": [
+            "MCA_SEM1_A"
+          ],
+          "component_ids": [
+            "25MCA15_TH"
+          ],
+          "component_types": [
+            "theory"
+          ],
+          "role": "primary",
+          "weekly_hours_per_section": 3,
+          "total_weekly_hours": 3,
+          "sessions_per_week_per_section": 3,
+          "total_sessions_per_week": 3
+        },
+        {
+          "subject_code": "25MCA16",
+          "semester": 1,
+          "sections": [
+            "A"
+          ],
+          "student_group_ids": [
+            "MCA_SEM1_A"
+          ],
+          "component_ids": [
+            "25MCA16_PR"
+          ],
+          "component_types": [
+            "practical"
+          ],
+          "role": "primary",
+          "weekly_hours_per_section": 2,
+          "total_weekly_hours": 2,
+          "sessions_per_week_per_section": 1,
+          "total_sessions_per_week": 1
+        }
+      ],
+      "supporting_assignments": [
+        {
+          "subject_code": "25MCA13",
+          "semester": 1,
+          "role": "supporting"
+        }
+      ],
+      "workload_stats": {
+        "theory_hours": 6,
+        "tutorial_hours": 0,
+        "practical_hours": 4,
+        "total_sessions": 8,
+        "total_weekly_hours": 10
+      }
+    },
+    {
+      "faculty_id": "SH",
+      "name": "Ms Sahana",
+      "designation": "Assistant Professor",
+      "department": "MCA",
+      "primary_assignments": [
+        {
+          "subject_code": "25MCA11",
+          "semester": 1,
+          "sections": [
+            "B"
+          ],
+          "student_group_ids": [
+            "MCA_SEM1_B"
+          ],
+          "component_ids": [
+            "25MCA11_TH",
+            "25MCA11_PR"
+          ],
+          "component_types": [
+            "theory",
+            "practical"
+          ],
+          "role": "primary",
+          "weekly_hours_per_section": 5,
+          "total_weekly_hours": 5,
+          "sessions_per_week_per_section": 4,
+          "total_sessions_per_week": 4
+        },
+        {
+          "subject_code": "25MCA14",
+          "semester": 1,
+          "sections": [
+            "B"
+          ],
+          "student_group_ids": [
+            "MCA_SEM1_B"
+          ],
+          "component_ids": [
+            "25MCA14_TH",
+            "25MCA14_PR"
+          ],
+          "component_types": [
+            "theory",
+            "practical"
+          ],
+          "role": "primary",
+          "weekly_hours_per_section": 5,
+          "total_weekly_hours": 5,
+          "sessions_per_week_per_section": 4,
+          "total_sessions_per_week": 4
+        }
+      ],
+      "supporting_assignments": [
+        {
+          "subject_code": "25MCA11",
+          "semester": 1,
+          "role": "supporting"
+        }
+      ],
+      "workload_stats": {
+        "theory_hours": 6,
+        "tutorial_hours": 0,
+        "practical_hours": 4,
+        "total_sessions": 8,
+        "total_weekly_hours": 10
+      }
+    },
+    {
+      "faculty_id": "KS",
+      "name": "Ms Komal S",
+      "designation": "Assistant Professor",
+      "department": "MCA",
+      "primary_assignments": [
+        {
+          "subject_code": "25MCA17",
+          "semester": 1,
+          "sections": [
+            "A",
+            "B"
+          ],
+          "student_group_ids": [
+            "MCA_SEM1_A",
+            "MCA_SEM1_B"
+          ],
+          "component_ids": [
+            "25MCA17_TU",
+            "25MCA17_PR"
+          ],
+          "component_types": [
+            "tutorial",
+            "practical"
+          ],
+          "role": "primary",
+          "weekly_hours_per_section": 6,
+          "total_weekly_hours": 12,
+          "sessions_per_week_per_section": 3,
+          "total_sessions_per_week": 6
+        }
+      ],
+      "supporting_assignments": [
+        {
+          "subject_code": "24MCAAD4",
+          "semester": 3,
+          "role": "supporting"
+        },
+        {
+          "subject_code": "24MCA32",
+          "semester": 3,
+          "role": "supporting"
+        },
+        {
+          "subject_code": "25MCA12",
+          "semester": 1,
+          "role": "supporting"
+        },
+        {
+          "subject_code": "25MCA13",
+          "semester": 1,
+          "role": "supporting"
+        },
+        {
+          "subject_code": "25MCA14",
+          "semester": 1,
+          "role": "supporting"
+        }
+      ],
+      "workload_stats": {
+        "theory_hours": 0,
+        "tutorial_hours": 4,
+        "practical_hours": 8,
+        "total_sessions": 6,
+        "total_weekly_hours": 12
+      }
+    },
+    {
+      "faculty_id": "SZ",
+      "name": "Ms Shazia Mannan",
+      "designation": "Assistant Professor",
+      "department": "MCA",
+      "primary_assignments": [
+        {
+          "subject_code": "25MCA13",
+          "semester": 1,
+          "sections": [
+            "A",
+            "B"
+          ],
+          "student_group_ids": [
+            "MCA_SEM1_A",
+            "MCA_SEM1_B"
+          ],
+          "component_ids": [
+            "25MCA13_TH",
+            "25MCA13_PR"
+          ],
+          "component_types": [
+            "theory",
+            "practical"
+          ],
+          "role": "primary",
+          "weekly_hours_per_section": 5,
+          "total_weekly_hours": 10,
+          "sessions_per_week_per_section": 4,
+          "total_sessions_per_week": 8
+        }
+      ],
+      "supporting_assignments": [
+        {
+          "subject_code": "24MCA32",
+          "semester": 3,
+          "role": "supporting"
+        },
+        {
+          "subject_code": "25MCA14",
+          "semester": 1,
+          "role": "supporting"
+        },
+        {
+          "subject_code": "25MCA16",
+          "semester": 1,
+          "role": "supporting"
+        }
+      ],
+      "workload_stats": {
+        "theory_hours": 6,
+        "tutorial_hours": 0,
+        "practical_hours": 4,
+        "total_sessions": 8,
+        "total_weekly_hours": 10
+      }
+    }
+  ]
+}

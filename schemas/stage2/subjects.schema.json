@@ -1,0 +1,170 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://timetable.eaglecampus.edu/schemas/stage2/subjects2Full.schema.json",
+  "title": "Stage 2 Subjects Full File",
+  "description": "Schema for subjects2Full.json - subjects with full component and session details",
+  "type": "object",
+  "required": ["subjects"],
+  "additionalProperties": false,
+  "properties": {
+    "subjects": {
+      "type": "array",
+      "description": "List of subjects with full details",
+      "items": {
+        "$ref": "#/definitions/SubjectFull"
+      }
+    }
+  },
+  "definitions": {
+    "SubjectFull": {
+      "type": "object",
+      "description": "A subject with full component details",
+      "required": ["subjectCode", "subjectName", "semester", "credits", "components", "type"],
+      "additionalProperties": false,
+      "properties": {
+        "subjectCode": {
+          "type": "string",
+          "description": "Unique subject identifier",
+          "minLength": 1
+        },
+        "subjectName": {
+          "type": "string",
+          "description": "Full name of the subject",
+          "minLength": 1
+        },
+        "semester": {
+          "type": "integer",
+          "description": "Semester number",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "credits": {
+          "type": "object",
+          "description": "Credit breakdown",
+          "required": ["theory", "tutorial", "practical", "total"],
+          "additionalProperties": false,
+          "properties": {
+            "theory": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "tutorial": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "practical": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "total": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "components": {
+          "type": "array",
+          "description": "Teaching components for this subject",
+          "items": {
+            "$ref": "#/definitions/SubjectComponent"
+          }
+        },
+        "type": {
+          "type": "string",
+          "description": "Subject type",
+          "enum": ["core", "elective", "mandatory_elective", "diff"]
+        },
+        "isElective": {
+          "type": "boolean",
+          "description": "Whether this is an elective subject"
+        },
+        "electiveGroup": {
+          "type": "string",
+          "description": "Elective group identifier (if elective)"
+        }
+      }
+    },
+    "SubjectComponent": {
+      "type": "object",
+      "description": "A teaching component of a subject",
+      "required": ["componentType", "credits", "sessionsPerWeek", "sessionDuration", "roomType"],
+      "additionalProperties": false,
+      "properties": {
+        "componentType": {
+          "type": "string",
+          "description": "Type of component",
+          "enum": ["theory", "tutorial", "practical"]
+        },
+        "credits": {
+          "type": "integer",
+          "description": "Credits for this component",
+          "minimum": 0
+        },
+        "sessionsPerWeek": {
+          "type": "integer",
+          "description": "Number of sessions per week",
+          "minimum": 1
+        },
+        "sessionDuration": {
+          "type": "integer",
+          "description": "Duration in minutes",
+          "minimum": 1
+        },
+        "hoursPerWeek": {
+          "type": "number",
+          "description": "Total hours per week",
+          "minimum": 0
+        },
+        "roomType": {
+          "type": "string",
+          "description": "Type of room required",
+          "enum": ["lecture", "lab"]
+        },
+        "requiresSplit": {
+          "type": "boolean",
+          "description": "Whether sections need splitting"
+        },
+        "studentsPerSession": {
+          "type": "integer",
+          "description": "Maximum students per session",
+          "minimum": 1
+        },
+        "fixedTiming": {
+          "$ref": "#/definitions/FixedTiming"
+        },
+        "preAllocatedRoom": {
+          "type": "string",
+          "description": "Pre-allocated room ID"
+        },
+        "roomPreference": {
+          "type": "array",
+          "description": "Preferred rooms in order",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "FixedTiming": {
+      "type": "object",
+      "description": "Fixed timing constraint",
+      "required": ["day", "slots"],
+      "additionalProperties": false,
+      "properties": {
+        "day": {
+          "type": "string",
+          "description": "Day of week",
+          "enum": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+        },
+        "slots": {
+          "type": "array",
+          "description": "Slot IDs",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        }
+      }
+    }
+  }
+}

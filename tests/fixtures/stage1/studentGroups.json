@@ -1,0 +1,22 @@
+{
+    "studentGroups": [
+        {
+            "groupId": "SEM1-A",
+            "semester": 1,
+            "section": "A",
+            "studentCount": 45
+        },
+        {
+            "groupId": "SEM1-B",
+            "semester": 1,
+            "section": "B",
+            "studentCount": 42
+        },
+        {
+            "groupId": "SEM3-A",
+            "semester": 3,
+            "section": "A",
+            "studentCount": 48
+        }
+    ]
+}

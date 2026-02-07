@@ -1,0 +1,136 @@
+{
+    "config": {
+        "dayStart": "09:00",
+        "dayEnd": "16:30",
+        "weekdays": ["Mon","Tue","Wed","Thu","Fri","Sat"],
+        "daySlotPattern": {
+        "Mon": ["S1","S2","S3","S4","S5","S6","S7"],
+        "Tue": ["S1","S2","S3","S4","S5","S6","S7"],
+        "Wed": ["S1","S2","S3","S4","S5","S6","S7"],
+        "Thu": ["S1","S2","S3","S4","S5","S6","S7"],
+        "Fri": ["S1","S2","S3","S4","S5","S6","S7"],
+        "Sat": ["S1","S2","S3","S4"]
+        },
+        "breakWindows": [
+        {
+            "start": "10:50",
+            "end": "11:05",
+            "type": "short"
+        },
+        {
+            "start": "12:55",
+            "end": "13:45",
+            "type": "lunch"
+        }
+        ],
+        "timeSlots": [
+        {
+            "slotId": "S1",
+            "start": "09:00",
+            "end": "09:55",
+            "lengthMinutes": 55
+        },
+        {
+            "slotId": "S2",
+            "start": "09:55",
+            "end": "10:50",
+            "lengthMinutes": 55
+        },
+        {
+            "slotId": "S3",
+            "start": "11:05",
+            "end": "12:00",
+            "lengthMinutes": 55
+        },
+        {
+            "slotId": "S4",
+            "start": "12:00",
+            "end": "12:55",
+            "lengthMinutes": 55
+        },
+        {
+            "slotId": "S5",
+            "start": "13:45",
+            "end": "14:40",
+            "lengthMinutes": 55
+        },
+        {
+            "slotId": "S6",
+            "start": "14:40",
+            "end": "15:35",
+            "lengthMinutes": 55
+        },
+        {
+            "slotId": "S7",
+            "start": "15:35",
+            "end": "16:30",
+            "lengthMinutes": 55
+        }
+        ],
+        "theorySessionMinutes": 55,
+        "labTutorialSessionMinutes": 110,
+        "creditToHours": {
+        "theory": 1,
+        "tutorial": 2,
+        "practical": 2
+        },
+        "creditPattern": {
+        "description": "Credit pattern array format: [theory, tutorial, practical]",
+        "example": "[3, 0, 1] means 3 theory credits, 0 tutorial credits, 1 practical credit"
+        },
+        "validSlotCombinations": {
+        "single": ["S1", "S2", "S3", "S4", "S5", "S6", "S7"],
+        "double": ["S1+S2", "S3+S4", "S5+S6", "S6+S7"],
+        "saturday": ["S1+S2", "S3+S4"],
+        "note": "S6+S7 is now valid as per updated plan. Lecture rooms can host tutorials."
+        },
+        "sessionTypes": {
+        "theory": {
+            "duration": 55,
+            "requiresContiguous": false
+        },
+        "tutorial": {
+            "duration": 110,
+            "requiresContiguous": true
+        },
+        "practical": {
+            "duration": 110,
+            "requiresContiguous": true
+        }
+        },
+        "resourceConstraints": {
+        "maxConsecutiveSlotsPerFaculty": 5,
+        "maxDailySlotsPerStudentGroup": 7,
+        "minGapBetweenSameFaculty": 0
+        },
+    "resources": {
+    "rooms": [
+      {
+        "roomId": "AB-402",
+        "type": "lecture",
+        "capacity": 60
+      },
+      {
+        "roomId": "AB-411",
+        "type": "lecture",
+        "capacity": 60
+      },
+      {
+        "roomId": "AB-412",
+        "type": "lecture",
+        "capacity": 60
+      },
+      {
+        "roomId": "LAB-1",
+        "type": "lab",
+        "capacity": 60
+      },
+      {
+        "roomId": "LAB-2",
+        "type": "lab",
+        "capacity": 60
+      }
+    ]
+    }        
+  }
+}

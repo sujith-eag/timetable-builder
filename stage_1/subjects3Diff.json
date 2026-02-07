@@ -1,0 +1,82 @@
+{
+  "subjects": [
+    {
+      "subjectCode": "24MCAP1",
+      "shortCode": "Project",
+      "title": "Project - Phase 1",
+      "creditPattern": [0, 0, 6],
+      "totalCredits": 6,
+      "department": "MCA",
+      "semester": 3,
+      "isElective": false,
+      "type": "diff",
+      "priority": "high",
+      "assignedTo": "all_faculty",
+      "sections": ["A", "B"],
+      "fixedTiming": {
+        "day": "Tue",
+        "slots": ["S6", "S7"],
+        "duration": 110
+      },
+      "components": [
+        {
+          "componentType": "practical",
+          "credits": 6,
+          "sessionDuration": 110,
+          "sessionsPerWeek": 1,
+          "mustBeInRoomType": "lab",
+          "blockSizeSlots": 2,
+          "mustBeContiguous": true
+        }
+      ]
+    },
+    
+    {
+      "subjectCode": "PROCTOR_SEM3",
+      "shortCode": "Proctor",
+      "title": "Proctor Meeting",
+      "creditPattern": [0, 0, 0],
+      "totalCredits": 0,
+      "department": "MCA",
+      "semester": 3,
+      "isElective": false,
+      "type": "diff",
+      "priority": "high",
+      "assignedTo": "all_faculty",
+      "sections": ["A", "B"],
+      "fixedTiming": {
+        "day": "Fri",
+        "slots": ["S7"],
+        "duration": 55
+      },
+      "components": [
+        {
+          "componentType": "tutorial",
+          "credits": 0,
+          "sessionDuration": 55,
+          "sessionsPerWeek": 1,
+          "mustBeInRoomType": "lecture",
+          "blockSizeSlots": 1,
+          "mustBeContiguous": false
+        }
+      ]
+    },
+    
+    {
+      "subjectCode": "PLACEMENT_SEM3",
+      "shortCode": "Placement",
+      "title": "Placement Training",
+      "creditPattern": [0, 0, 0],
+      "totalCredits": 0,
+      "department": "MCA",
+      "semester": 3,
+      "type": "diff",
+      "priority": "external",
+      "notInMainTimetable": true,
+      "fixedTiming": {
+        "day": "Sat",
+        "slots": ["S3", "S4"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://timetable.eaglecampus.edu/schemas/stage2/faculty2Full.schema.json",
+  "title": "Stage 2 Faculty Full File",
+  "description": "Schema for faculty2Full.json - faculty with full assignment and workload details",
+  "type": "object",
+  "required": ["faculty"],
+  "additionalProperties": false,
+  "properties": {
+    "faculty": {
+      "type": "array",
+      "description": "List of faculty with full details",
+      "items": {
+        "$ref": "#/definitions/FacultyFull"
+      }
+    }
+  },
+  "definitions": {
+    "FacultyFull": {
+      "type": "object",
+      "description": "A faculty member with full assignment details",
+      "required": ["facultyId", "name", "designation", "department", "workloadStats"],
+      "additionalProperties": false,
+      "properties": {
+        "facultyId": {
+          "type": "string",
+          "description": "Unique faculty identifier",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "description": "Full name of the faculty member",
+          "minLength": 1
+        },
+        "designation": {
+          "type": "string",
+          "description": "Faculty designation"
+        },
+        "department": {
+          "type": "string",
+          "description": "Faculty department"
+        },
+        "primaryAssignments": {
+          "type": "array",
+          "description": "Primary teaching assignments",
+          "default": [],
+          "items": {
+            "$ref": "#/definitions/PrimaryAssignment"
+          }
+        },
+        "supportingAssignments": {
+          "type": "array",
+          "description": "Supporting teaching assignments",
+          "default": [],
+          "items": {
+            "$ref": "#/definitions/SupportingAssignment"
+          }
+        },
+        "workloadStats": {
+          "$ref": "#/definitions/WorkloadStats"
+        }
+      }
+    },
+    "PrimaryAssignment": {
+      "type": "object",
+      "description": "A primary teaching assignment",
+      "required": ["subjectCode", "subjectName", "semester", "assignedComponents", "studentGroups"],
+      "additionalProperties": false,
+      "properties": {
+        "subjectCode": {
+          "type": "string",
+          "description": "Subject code",
+          "minLength": 1
+        },
+        "subjectName": {
+          "type": "string",
+          "description": "Subject name",
+          "minLength": 1
+        },
+        "semester": {
+          "type": "integer",
+          "description": "Semester number",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "assignedComponents": {
+          "type": "array",
+          "description": "Types of components assigned",
+          "items": {
+            "type": "string",
+            "enum": ["theory", "tutorial", "practical"]
+          }
+        },
+        "studentGroups": {
+          "type": "array",
+          "description": "Student groups taught",
+          "items": {
+            "type": "string"
+          }
+        },
+        "weeklyHours": {
+          "type": "object",
+          "description": "Weekly hours by component type",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "sessions": {
+          "type": "object",
+          "description": "Sessions per week by component type",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "SupportingAssignment": {
+      "type": "object",
+      "description": "A supporting teaching assignment",
+      "required": ["subjectCode", "subjectName", "semester", "supportComponents"],
+      "additionalProperties": false,
+      "properties": {
+        "subjectCode": {
+          "type": "string",
+          "description": "Subject code",
+          "minLength": 1
+        },
+        "subjectName": {
+          "type": "string",
+          "description": "Subject name",
+          "minLength": 1
+        },
+        "semester": {
+          "type": "integer",
+          "description": "Semester number",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "supportComponents": {
+          "type": "array",
+          "description": "Types of support components",
+          "items": {
+            "type": "string",
+            "enum": ["theory", "tutorial", "practical"]
+          }
+        },
+        "primaryFaculty": {
+          "type": "string",
+          "description": "Primary faculty ID"
+        },
+        "studentGroups": {
+          "type": "array",
+          "description": "Student groups for supporting role",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "WorkloadStats": {
+      "type": "object",
+      "description": "Workload statistics for a faculty member",
+      "required": ["theoryHours", "tutorialHours", "practicalHours", "totalSessions", "totalWeeklyHours"],
+      "additionalProperties": false,
+      "properties": {
+        "theoryHours": {
+          "type": "integer",
+          "description": "Weekly theory hours",
+          "minimum": 0
+        },
+        "tutorialHours": {
+          "type": "integer",
+          "description": "Weekly tutorial hours",
+          "minimum": 0
+        },
+        "practicalHours": {
+          "type": "integer",
+          "description": "Weekly practical hours",
+          "minimum": 0
+        },
+        "totalSessions": {
+          "type": "integer",
+          "description": "Total sessions per week",
+          "minimum": 0
+        },
+        "totalWeeklyHours": {
+          "type": "integer",
+          "description": "Total weekly hours",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

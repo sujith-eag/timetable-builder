@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://timetable.example.com/schemas/stage1/faculty.json",
+  "title": "Faculty",
+  "description": "Faculty member definitions",
+  "type": "object",
+  "required": ["faculty"],
+  "properties": {
+    "faculty": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["facultyId", "name", "designation"],
+        "properties": {
+          "facultyId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Unique faculty identifier (e.g., SA, KR)"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Full name of the faculty member"
+          },
+          "designation": {
+            "type": "string",
+            "description": "Job title (Professor, Associate Professor, etc.)"
+          },
+          "assignedSubjects": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "description": "Subject code for all sections"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  },
+                  "description": "Subject code mapped to specific sections"
+                }
+              ]
+            },
+            "default": [],
+            "description": "Primary subject assignments"
+          },
+          "supportingSubjects": {
+            "type": "array",
+            "items": { "type": "string" },
+            "default": [],
+            "description": "Secondary/backup subject assignments"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

@@ -1,0 +1,1083 @@
+{
+  "metadata": {
+    "generated_at": "2025-10-29T12:39:47.475376",
+    "generator": "generate_statistics.py",
+    "version": "1.0"
+  },
+  "semester1": {
+    "semester": 1,
+    "total_assignments": 24,
+    "total_sessions": 44,
+    "total_hours": 55.0,
+    "by_type": {
+      "core": {
+        "count": 24,
+        "sessions": 44,
+        "hours": 54.959999999999994
+      }
+    },
+    "by_component": {
+      "theory": {
+        "count": 10,
+        "sessions": 28,
+        "hours": 25.66
+      },
+      "practical": {
+        "count": 10,
+        "sessions": 12,
+        "hours": 21.979999999999997
+      },
+      "tutorial": {
+        "count": 4,
+        "sessions": 4,
+        "hours": 7.32
+      }
+    },
+    "by_priority": {
+      "high": {
+        "count": 24,
+        "sessions": 44
+      }
+    },
+    "by_room_type": {
+      "lecture": {
+        "count": 10,
+        "sessions": 28
+      },
+      "lab": {
+        "count": 14,
+        "sessions": 16
+      }
+    },
+    "faculty_distribution": {
+      "MM": {
+        "faculty_name": "Dr M. Manjunath",
+        "assignments": 2,
+        "sessions": 4,
+        "hours": 4.58,
+        "subjects": [
+          "25MCA15",
+          "25MCA16"
+        ],
+        "subject_count": 2,
+        "components": {
+          "theory": 1,
+          "practical": 1
+        }
+      },
+      "PNP": {
+        "faculty_name": "Dr Preethi N Patil",
+        "assignments": 4,
+        "sessions": 6,
+        "hours": 7.32,
+        "subjects": [
+          "25MCA12"
+        ],
+        "subject_count": 1,
+        "components": {
+          "tutorial": 2,
+          "theory": 2
+        }
+      },
+      "SK": {
+        "faculty_name": "Mrs Savitha K",
+        "assignments": 2,
+        "sessions": 4,
+        "hours": 4.58,
+        "subjects": [
+          "25MCA14"
+        ],
+        "subject_count": 1,
+        "components": {
+          "practical": 1,
+          "theory": 1
+        }
+      },
+      "SM": {
+        "faculty_name": "Ms Swathi M",
+        "assignments": 4,
+        "sessions": 8,
+        "hours": 9.16,
+        "subjects": [
+          "25MCA11",
+          "25MCA15",
+          "25MCA16"
+        ],
+        "subject_count": 3,
+        "components": {
+          "practical": 2,
+          "theory": 2
+        }
+      },
+      "SH": {
+        "faculty_name": "Ms Sahana",
+        "assignments": 4,
+        "sessions": 8,
+        "hours": 9.16,
+        "subjects": [
+          "25MCA11",
+          "25MCA14"
+        ],
+        "subject_count": 2,
+        "components": {
+          "practical": 2,
+          "theory": 2
+        }
+      },
+      "KS": {
+        "faculty_name": "Ms Komal S",
+        "assignments": 4,
+        "sessions": 6,
+        "hours": 11.0,
+        "subjects": [
+          "25MCA17"
+        ],
+        "subject_count": 1,
+        "components": {
+          "practical": 2,
+          "tutorial": 2
+        }
+      },
+      "SZ": {
+        "faculty_name": "Ms Shazia Mannan",
+        "assignments": 4,
+        "sessions": 8,
+        "hours": 9.16,
+        "subjects": [
+          "25MCA13"
+        ],
+        "subject_count": 1,
+        "components": {
+          "practical": 2,
+          "theory": 2
+        }
+      }
+    },
+    "subject_coverage": {
+      "25MCA15": {
+        "title": "Data Structures",
+        "faculty": [
+          "MM",
+          "SM"
+        ],
+        "faculty_count": 2,
+        "components": [
+          "theory",
+          "theory"
+        ],
+        "component_count": 2,
+        "total_sessions": 6,
+        "sections": [
+          "A",
+          "B"
+        ]
+      },
+      "25MCA16": {
+        "title": "Data Structures using C",
+        "faculty": [
+          "MM",
+          "SM"
+        ],
+        "faculty_count": 2,
+        "components": [
+          "practical",
+          "practical"
+        ],
+        "component_count": 2,
+        "total_sessions": 2,
+        "sections": [
+          "A",
+          "B"
+        ]
+      },
+      "25MCA12": {
+        "title": "Computational Mathematics",
+        "faculty": [
+          "PNP"
+        ],
+        "faculty_count": 1,
+        "components": [
+          "tutorial",
+          "tutorial",
+          "theory",
+          "theory"
+        ],
+        "component_count": 4,
+        "total_sessions": 6,
+        "sections": [
+          "A",
+          "B"
+        ]
+      },
+      "25MCA14": {
+        "title": "Database Systems",
+        "faculty": [
+          "SH",
+          "SK"
+        ],
+        "faculty_count": 2,
+        "components": [
+          "practical",
+          "theory",
+          "practical",
+          "theory"
+        ],
+        "component_count": 4,
+        "total_sessions": 8,
+        "sections": [
+          "A",
+          "B"
+        ]
+      },
+      "25MCA11": {
+        "title": "Programming with Python",
+        "faculty": [
+          "SH",
+          "SM"
+        ],
+        "faculty_count": 2,
+        "components": [
+          "practical",
+          "theory",
+          "practical",
+          "theory"
+        ],
+        "component_count": 4,
+        "total_sessions": 8,
+        "sections": [
+          "A",
+          "B"
+        ]
+      },
+      "25MCA17": {
+        "title": "Web Programming",
+        "faculty": [
+          "KS"
+        ],
+        "faculty_count": 1,
+        "components": [
+          "practical",
+          "practical",
+          "tutorial",
+          "tutorial"
+        ],
+        "component_count": 4,
+        "total_sessions": 6,
+        "sections": [
+          "A",
+          "B"
+        ]
+      },
+      "25MCA13": {
+        "title": "Operating Systems and Shell Programming",
+        "faculty": [
+          "SZ"
+        ],
+        "faculty_count": 1,
+        "components": [
+          "practical",
+          "practical",
+          "theory",
+          "theory"
+        ],
+        "component_count": 4,
+        "total_sessions": 8,
+        "sections": [
+          "A",
+          "B"
+        ]
+      }
+    },
+    "student_groups": {
+      "MCA_SEM1_B": {
+        "assignments": 12,
+        "sessions": 22,
+        "hours": 27.479999999999997,
+        "subjects": [
+          "25MCA11",
+          "25MCA12",
+          "25MCA13",
+          "25MCA14",
+          "25MCA15",
+          "25MCA16",
+          "25MCA17"
+        ],
+        "subject_count": 7
+      },
+      "MCA_SEM1_A": {
+        "assignments": 12,
+        "sessions": 22,
+        "hours": 27.479999999999997,
+        "subjects": [
+          "25MCA11",
+          "25MCA12",
+          "25MCA13",
+          "25MCA14",
+          "25MCA15",
+          "25MCA16",
+          "25MCA17"
+        ],
+        "subject_count": 7
+      }
+    },
+    "constraints": {
+      "with_student_conflicts": 24,
+      "with_faculty_conflicts": 24,
+      "with_fixed_timing": 0,
+      "with_room_allocation": 0,
+      "with_room_preferences": 0,
+      "with_contiguous_requirement": 14
+    },
+    "conflict_patterns": {
+      "1": 24
+    },
+    "room_requirements": {
+      "unique_rooms_needed": 0,
+      "pre_allocated_rooms": [],
+      "preferred_rooms_list": []
+    }
+  },
+  "semester3": {
+    "semester": 3,
+    "total_assignments": 21,
+    "total_sessions": 37,
+    "total_hours": 53.17,
+    "by_type": {
+      "core": {
+        "count": 6,
+        "sessions": 14,
+        "hours": 14.66
+      },
+      "elective": {
+        "count": 15,
+        "sessions": 23,
+        "hours": 38.49
+      }
+    },
+    "by_component": {
+      "theory": {
+        "count": 6,
+        "sessions": 16,
+        "hours": 14.66
+      },
+      "practical": {
+        "count": 11,
+        "sessions": 17,
+        "hours": 31.17000000000001
+      },
+      "tutorial": {
+        "count": 4,
+        "sessions": 4,
+        "hours": 7.32
+      }
+    },
+    "by_priority": {
+      "high": {
+        "count": 6,
+        "sessions": 14
+      },
+      "medium": {
+        "count": 15,
+        "sessions": 23
+      }
+    },
+    "by_room_type": {
+      "lecture": {
+        "count": 6,
+        "sessions": 16
+      },
+      "lab": {
+        "count": 15,
+        "sessions": 21
+      }
+    },
+    "faculty_distribution": {
+      "SA": {
+        "faculty_name": "Dr S. Ajitha",
+        "assignments": 1,
+        "sessions": 3,
+        "hours": 2.75,
+        "subjects": [
+          "24MCA31"
+        ],
+        "subject_count": 1,
+        "components": {
+          "theory": 1
+        }
+      },
+      "KR": {
+        "faculty_name": "Mrs Komala R",
+        "assignments": 3,
+        "sessions": 6,
+        "hours": 6.41,
+        "subjects": [
+          "24MCA31",
+          "24MCASS5"
+        ],
+        "subject_count": 2,
+        "components": {
+          "theory": 2,
+          "practical": 1
+        }
+      },
+      "RG": {
+        "faculty_name": "Ms Geethanjali R",
+        "assignments": 4,
+        "sessions": 8,
+        "hours": 9.16,
+        "subjects": [
+          "24MCA32"
+        ],
+        "subject_count": 1,
+        "components": {
+          "theory": 2,
+          "practical": 2
+        }
+      },
+      "MM": {
+        "faculty_name": "Dr M. Manjunath",
+        "assignments": 3,
+        "sessions": 5,
+        "hours": 9.17,
+        "subjects": [
+          "24MCAAD1"
+        ],
+        "subject_count": 1,
+        "components": {
+          "tutorial": 1,
+          "practical": 2
+        }
+      },
+      "DEG": {
+        "faculty_name": "Dr D. Evangelin Geetha",
+        "assignments": 3,
+        "sessions": 4,
+        "hours": 5.49,
+        "subjects": [
+          "24MCAAD4"
+        ],
+        "subject_count": 1,
+        "components": {
+          "theory": 1,
+          "practical": 2
+        }
+      },
+      "DU": {
+        "faculty_name": "Ms Deepali U",
+        "assignments": 3,
+        "sessions": 5,
+        "hours": 9.17,
+        "subjects": [
+          "24MCAAD5"
+        ],
+        "subject_count": 1,
+        "components": {
+          "tutorial": 1,
+          "practical": 2
+        }
+      },
+      "PNP": {
+        "faculty_name": "Dr Preethi N Patil",
+        "assignments": 2,
+        "sessions": 3,
+        "hours": 5.5,
+        "subjects": [
+          "24MCASS2"
+        ],
+        "subject_count": 1,
+        "components": {
+          "tutorial": 1,
+          "practical": 1
+        }
+      },
+      "SK": {
+        "faculty_name": "Mrs Savitha K",
+        "assignments": 2,
+        "sessions": 3,
+        "hours": 5.5,
+        "subjects": [
+          "24MCASS3"
+        ],
+        "subject_count": 1,
+        "components": {
+          "tutorial": 1,
+          "practical": 1
+        }
+      }
+    },
+    "subject_coverage": {
+      "24MCA31": {
+        "title": "Software Engineering and Agile Methodologies",
+        "faculty": [
+          "KR",
+          "SA"
+        ],
+        "faculty_count": 2,
+        "components": [
+          "theory",
+          "theory"
+        ],
+        "component_count": 2,
+        "total_sessions": 6,
+        "sections": [
+          "A",
+          "B"
+        ]
+      },
+      "24MCASS5": {
+        "title": "Ethical Hacking",
+        "faculty": [
+          "KR"
+        ],
+        "faculty_count": 1,
+        "components": [
+          "theory",
+          "practical"
+        ],
+        "component_count": 2,
+        "total_sessions": 3,
+        "sections": [
+          "A",
+          "B"
+        ]
+      },
+      "24MCA32": {
+        "title": "Machine Learning",
+        "faculty": [
+          "RG"
+        ],
+        "faculty_count": 1,
+        "components": [
+          "theory",
+          "theory",
+          "practical",
+          "practical"
+        ],
+        "component_count": 4,
+        "total_sessions": 8,
+        "sections": [
+          "A",
+          "B"
+        ]
+      },
+      "24MCAAD1": {
+        "title": "Artificial Intelligence of Things",
+        "faculty": [
+          "MM"
+        ],
+        "faculty_count": 1,
+        "components": [
+          "tutorial",
+          "practical",
+          "practical"
+        ],
+        "component_count": 3,
+        "total_sessions": 5,
+        "sections": [
+          "A",
+          "B"
+        ]
+      },
+      "24MCAAD4": {
+        "title": "Natural Language Processing",
+        "faculty": [
+          "DEG"
+        ],
+        "faculty_count": 1,
+        "components": [
+          "theory",
+          "practical",
+          "practical"
+        ],
+        "component_count": 3,
+        "total_sessions": 4,
+        "sections": [
+          "A",
+          "B"
+        ]
+      },
+      "24MCAAD5": {
+        "title": "Generative AI and Prompt Engineering",
+        "faculty": [
+          "DU"
+        ],
+        "faculty_count": 1,
+        "components": [
+          "tutorial",
+          "practical",
+          "practical"
+        ],
+        "component_count": 3,
+        "total_sessions": 5,
+        "sections": [
+          "A",
+          "B"
+        ]
+      },
+      "24MCASS2": {
+        "title": "DevOps",
+        "faculty": [
+          "PNP"
+        ],
+        "faculty_count": 1,
+        "components": [
+          "tutorial",
+          "practical"
+        ],
+        "component_count": 2,
+        "total_sessions": 3,
+        "sections": [
+          "A",
+          "B"
+        ]
+      },
+      "24MCASS3": {
+        "title": "Cloud Computing",
+        "faculty": [
+          "SK"
+        ],
+        "faculty_count": 1,
+        "components": [
+          "tutorial",
+          "practical"
+        ],
+        "component_count": 2,
+        "total_sessions": 3,
+        "sections": [
+          "A",
+          "B"
+        ]
+      }
+    },
+    "student_groups": {
+      "MCA_SEM3_B": {
+        "assignments": 3,
+        "sessions": 7,
+        "hours": 7.33,
+        "subjects": [
+          "24MCA31",
+          "24MCA32"
+        ],
+        "subject_count": 2
+      },
+      "MCA_SEM3_A": {
+        "assignments": 3,
+        "sessions": 7,
+        "hours": 7.33,
+        "subjects": [
+          "24MCA31",
+          "24MCA32"
+        ],
+        "subject_count": 2
+      },
+      "ELEC_SS_G1": {
+        "assignments": 6,
+        "sessions": 9,
+        "hours": 14.66,
+        "subjects": [
+          "24MCASS2",
+          "24MCASS3",
+          "24MCASS5"
+        ],
+        "subject_count": 3
+      },
+      "ELEC_AD_A1": {
+        "assignments": 6,
+        "sessions": 9,
+        "hours": 14.66,
+        "subjects": [
+          "24MCAAD1",
+          "24MCAAD4",
+          "24MCAAD5"
+        ],
+        "subject_count": 3
+      },
+      "ELEC_AD_B1": {
+        "assignments": 6,
+        "sessions": 9,
+        "hours": 14.66,
+        "subjects": [
+          "24MCAAD1",
+          "24MCAAD4",
+          "24MCAAD5"
+        ],
+        "subject_count": 3
+      }
+    },
+    "constraints": {
+      "with_student_conflicts": 21,
+      "with_faculty_conflicts": 21,
+      "with_fixed_timing": 0,
+      "with_room_allocation": 8,
+      "with_room_preferences": 21,
+      "with_contiguous_requirement": 15
+    },
+    "conflict_patterns": {
+      "3": 12,
+      "4": 3,
+      "2": 6
+    },
+    "room_requirements": {
+      "unique_rooms_needed": 6,
+      "pre_allocated_rooms": [
+        "LAB-2",
+        "AB-402",
+        "LAB-1",
+        "AB-411"
+      ],
+      "preferred_rooms_list": [
+        "AB-402",
+        "LAB-1",
+        "LAB-2",
+        "AB-413",
+        "AB-412",
+        "AB-411"
+      ]
+    }
+  },
+  "combined": {
+    "total_assignments": 45,
+    "total_sessions": 81,
+    "total_hours": 108.17,
+    "faculty_workload": {
+      "SA": {
+        "faculty_name": "Dr S. Ajitha",
+        "sem1": {
+          "assignments": 0,
+          "sessions": 0,
+          "hours": 0,
+          "subjects": []
+        },
+        "sem3": {
+          "assignments": 1,
+          "sessions": 3,
+          "hours": 2.75,
+          "subjects": [
+            "24MCA31"
+          ]
+        },
+        "total": {
+          "assignments": 1,
+          "sessions": 3,
+          "hours": 2.75,
+          "subjects": [
+            "24MCA31"
+          ],
+          "subjectCount": 1
+        }
+      },
+      "KS": {
+        "faculty_name": "Ms Komal S",
+        "sem1": {
+          "assignments": 4,
+          "sessions": 6,
+          "hours": 11.0,
+          "subjects": [
+            "25MCA17"
+          ]
+        },
+        "sem3": {
+          "assignments": 0,
+          "sessions": 0,
+          "hours": 0,
+          "subjects": []
+        },
+        "total": {
+          "assignments": 4,
+          "sessions": 6,
+          "hours": 11.0,
+          "subjects": [
+            "25MCA17"
+          ],
+          "subjectCount": 1
+        }
+      },
+      "MM": {
+        "faculty_name": "Dr M. Manjunath",
+        "sem1": {
+          "assignments": 2,
+          "sessions": 4,
+          "hours": 4.58,
+          "subjects": [
+            "25MCA15",
+            "25MCA16"
+          ]
+        },
+        "sem3": {
+          "assignments": 3,
+          "sessions": 5,
+          "hours": 9.17,
+          "subjects": [
+            "24MCAAD1"
+          ]
+        },
+        "total": {
+          "assignments": 5,
+          "sessions": 9,
+          "hours": 13.75,
+          "subjects": [
+            "24MCAAD1",
+            "25MCA15",
+            "25MCA16"
+          ],
+          "subjectCount": 3
+        }
+      },
+      "SZ": {
+        "faculty_name": "Ms Shazia Mannan",
+        "sem1": {
+          "assignments": 4,
+          "sessions": 8,
+          "hours": 9.16,
+          "subjects": [
+            "25MCA13"
+          ]
+        },
+        "sem3": {
+          "assignments": 0,
+          "sessions": 0,
+          "hours": 0,
+          "subjects": []
+        },
+        "total": {
+          "assignments": 4,
+          "sessions": 8,
+          "hours": 9.16,
+          "subjects": [
+            "25MCA13"
+          ],
+          "subjectCount": 1
+        }
+      },
+      "KR": {
+        "faculty_name": "Mrs Komala R",
+        "sem1": {
+          "assignments": 0,
+          "sessions": 0,
+          "hours": 0,
+          "subjects": []
+        },
+        "sem3": {
+          "assignments": 3,
+          "sessions": 6,
+          "hours": 6.41,
+          "subjects": [
+            "24MCA31",
+            "24MCASS5"
+          ]
+        },
+        "total": {
+          "assignments": 3,
+          "sessions": 6,
+          "hours": 6.41,
+          "subjects": [
+            "24MCA31",
+            "24MCASS5"
+          ],
+          "subjectCount": 2
+        }
+      },
+      "RG": {
+        "faculty_name": "Ms Geethanjali R",
+        "sem1": {
+          "assignments": 0,
+          "sessions": 0,
+          "hours": 0,
+          "subjects": []
+        },
+        "sem3": {
+          "assignments": 4,
+          "sessions": 8,
+          "hours": 9.16,
+          "subjects": [
+            "24MCA32"
+          ]
+        },
+        "total": {
+          "assignments": 4,
+          "sessions": 8,
+          "hours": 9.16,
+          "subjects": [
+            "24MCA32"
+          ],
+          "subjectCount": 1
+        }
+      },
+      "SK": {
+        "faculty_name": "Mrs Savitha K",
+        "sem1": {
+          "assignments": 2,
+          "sessions": 4,
+          "hours": 4.58,
+          "subjects": [
+            "25MCA14"
+          ]
+        },
+        "sem3": {
+          "assignments": 2,
+          "sessions": 3,
+          "hours": 5.5,
+          "subjects": [
+            "24MCASS3"
+          ]
+        },
+        "total": {
+          "assignments": 4,
+          "sessions": 7,
+          "hours": 10.08,
+          "subjects": [
+            "24MCASS3",
+            "25MCA14"
+          ],
+          "subjectCount": 2
+        }
+      },
+      "SH": {
+        "faculty_name": "Ms Sahana",
+        "sem1": {
+          "assignments": 4,
+          "sessions": 8,
+          "hours": 9.16,
+          "subjects": [
+            "25MCA11",
+            "25MCA14"
+          ]
+        },
+        "sem3": {
+          "assignments": 0,
+          "sessions": 0,
+          "hours": 0,
+          "subjects": []
+        },
+        "total": {
+          "assignments": 4,
+          "sessions": 8,
+          "hours": 9.16,
+          "subjects": [
+            "25MCA11",
+            "25MCA14"
+          ],
+          "subjectCount": 2
+        }
+      },
+      "DU": {
+        "faculty_name": "Ms Deepali U",
+        "sem1": {
+          "assignments": 0,
+          "sessions": 0,
+          "hours": 0,
+          "subjects": []
+        },
+        "sem3": {
+          "assignments": 3,
+          "sessions": 5,
+          "hours": 9.17,
+          "subjects": [
+            "24MCAAD5"
+          ]
+        },
+        "total": {
+          "assignments": 3,
+          "sessions": 5,
+          "hours": 9.17,
+          "subjects": [
+            "24MCAAD5"
+          ],
+          "subjectCount": 1
+        }
+      },
+      "DEG": {
+        "faculty_name": "Dr D. Evangelin Geetha",
+        "sem1": {
+          "assignments": 0,
+          "sessions": 0,
+          "hours": 0,
+          "subjects": []
+        },
+        "sem3": {
+          "assignments": 3,
+          "sessions": 4,
+          "hours": 5.49,
+          "subjects": [
+            "24MCAAD4"
+          ]
+        },
+        "total": {
+          "assignments": 3,
+          "sessions": 4,
+          "hours": 5.49,
+          "subjects": [
+            "24MCAAD4"
+          ],
+          "subjectCount": 1
+        }
+      },
+      "PNP": {
+        "faculty_name": "Dr Preethi N Patil",
+        "sem1": {
+          "assignments": 4,
+          "sessions": 6,
+          "hours": 7.32,
+          "subjects": [
+            "25MCA12"
+          ]
+        },
+        "sem3": {
+          "assignments": 2,
+          "sessions": 3,
+          "hours": 5.5,
+          "subjects": [
+            "24MCASS2"
+          ]
+        },
+        "total": {
+          "assignments": 6,
+          "sessions": 9,
+          "hours": 12.82,
+          "subjects": [
+            "24MCASS2",
+            "25MCA12"
+          ],
+          "subjectCount": 2
+        }
+      },
+      "SM": {
+        "faculty_name": "Ms Swathi M",
+        "sem1": {
+          "assignments": 4,
+          "sessions": 8,
+          "hours": 9.16,
+          "subjects": [
+            "25MCA11",
+            "25MCA15",
+            "25MCA16"
+          ]
+        },
+        "sem3": {
+          "assignments": 0,
+          "sessions": 0,
+          "hours": 0,
+          "subjects": []
+        },
+        "total": {
+          "assignments": 4,
+          "sessions": 8,
+          "hours": 9.16,
+          "subjects": [
+            "25MCA11",
+            "25MCA15",
+            "25MCA16"
+          ],
+          "subjectCount": 3
+        }
+      }
+    },
+    "resource_analysis": {
+      "lecture_room_sessions": 44,
+      "lab_sessions": 37,
+      "theory_sessions": 44,
+      "practical_sessions": 29,
+      "tutorial_sessions": 8
+    }
+  }
+}

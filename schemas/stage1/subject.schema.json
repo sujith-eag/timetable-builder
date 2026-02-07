@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://timetable.example.com/schemas/stage1/subject.json",
+  "title": "Subject",
+  "description": "Academic subject/course definition",
+  "type": "object",
+  "required": ["subjects"],
+  "properties": {
+    "subjects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "subjectCode",
+          "shortCode",
+          "title",
+          "creditPattern",
+          "totalCredits",
+          "department",
+          "semester",
+          "isElective",
+          "type"
+        ],
+        "properties": {
+          "subjectCode": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Unique subject identifier (e.g., 25MCA11)"
+          },
+          "shortCode": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Short code for display (e.g., PwP)"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Full subject title"
+          },
+          "creditPattern": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "minItems": 3,
+            "maxItems": 3,
+            "description": "Credit pattern [theory, tutorial, practical]"
+          },
+          "totalCredits": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Total credits (must equal sum of creditPattern)"
+          },
+          "department": {
+            "type": "string",
+            "description": "Department offering the subject"
+          },
+          "semester": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 8,
+            "description": "Semester number (1-8)"
+          },
+          "isElective": {
+            "type": "boolean",
+            "description": "Whether the subject is an elective"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["core", "elective"],
+            "description": "Subject type"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

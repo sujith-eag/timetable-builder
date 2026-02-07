@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://timetable.eaglecampus.edu/schemas/stage3/studentGroupOverlapConstraints.schema.json",
+  "title": "Student Group Overlap Constraints",
+  "description": "Schema for studentGroupOverlapConstraints.json - defines which student groups cannot be scheduled at the same time",
+  "type": "object",
+  "required": ["metadata", "cannotOverlapWith"],
+  "additionalProperties": false,
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "description": "Metadata about this constraints file",
+      "required": ["generatedAt", "description"],
+      "additionalProperties": false,
+      "properties": {
+        "generatedAt": {
+          "type": "string",
+          "description": "Generation timestamp",
+          "format": "date-time"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the constraints"
+        },
+        "generator": {
+          "type": "string",
+          "description": "Script/tool that generated this file"
+        }
+      }
+    },
+    "cannotOverlapWith": {
+      "type": "object",
+      "description": "Map of student group to list of groups it cannot overlap with",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
