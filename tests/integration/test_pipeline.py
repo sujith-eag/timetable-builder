@@ -43,7 +43,7 @@ def data_loader(v4_data_dir) -> DataLoader:
 @pytest.fixture
 def schema_validator(v4_data_dir) -> SchemaValidator:
     """Create a schema validator for V4 data."""
-    return SchemaValidator(v4_data_dir / "schemas")
+    return SchemaValidator(v4_data_dir / "src" / "timetable" / "schemas")
 
 
 # ============================================================================

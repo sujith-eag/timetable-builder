@@ -37,7 +37,7 @@ def v4_data_dir() -> Path:
 @pytest.fixture
 def schemas_dir(v4_data_dir) -> Path:
     """Get the schemas directory path."""
-    return v4_data_dir / "schemas"
+    return v4_data_dir / "src" / "timetable" / "schemas"
 
 
 @pytest.fixture

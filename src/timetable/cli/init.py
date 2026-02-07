@@ -28,8 +28,7 @@ INIT_CONFIG = {
         "stage_4",
         "stage_5",
         "stage_6",
-        "logs",
-        "schemas"
+        "logs"
     ],
 }
 
