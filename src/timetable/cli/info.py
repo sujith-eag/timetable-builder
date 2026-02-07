@@ -229,6 +229,57 @@ def info_subjects(
         sys.exit(1)
 
 
+@info.command(name="scheduling")
+@click.option(
+    "-d", "--data-dir",
+    type=click.Path(exists=False),
+    help="Path to the data directory.",
+)
+@click.pass_context
+def info_scheduling(ctx: click.Context, data_dir: Optional[str]) -> None:
+    """Display scheduling input information."""
+    try:
+        data_path = get_data_dir(data_dir)
+        loader = DataLoader(data_path)
+        scheduling_input = loader.load_scheduling_input()
+
+        table = Table(title="Scheduling Input Summary", show_header=True)
+        table.add_column("Property", style="cyan")
+        table.add_column("Value", style="green")
+
+        table.add_row("Total Assignments", str(len(scheduling_input.assignments)))
+        table.add_row("Semester 1 Assignments", str(scheduling_input.metadata.semester1_assignments))
+        table.add_row("Semester 3 Assignments", str(scheduling_input.metadata.semester3_assignments))
+        table.add_row("Time Slots", str(scheduling_input.metadata.total_time_slots))
+        table.add_row("Rooms", str(scheduling_input.metadata.total_rooms))
+        table.add_row("Working Days", ", ".join(scheduling_input.configuration.weekdays))
+
+        console.print(table)
+
+        # Show assignment breakdown by component type
+        component_types = {}
+        for assignment in scheduling_input.assignments:
+            comp_type = assignment.component_type
+            component_types[comp_type] = component_types.get(comp_type, 0) + 1
+
+        console.print("\n[bold]Assignments by Component Type:[/bold]")
+        for comp_type, count in sorted(component_types.items()):
+            console.print(f"  • {comp_type}: {count}")
+
+        # Show first few assignments
+        console.print("\n[bold]Sample Assignments:[/bold]")
+        for i, assignment in enumerate(scheduling_input.assignments[:10]):
+            console.print(f"  {i+1}. [{assignment.subject_code}] {assignment.subject_title}")
+            console.print(f"      Faculty: {assignment.faculty_name}, Sessions: {assignment.sessions_per_week}")
+
+        if len(scheduling_input.assignments) > 10:
+            console.print(f"  ... and {len(scheduling_input.assignments) - 10} more")
+
+    except TimetableError as e:
+        print_error(str(e))
+        sys.exit(1)
+
+
 @info.command(name="all")
 @click.option(
     "-d", "--data-dir",
@@ -283,6 +334,31 @@ def info_all(ctx: click.Context, data_dir: Optional[str]) -> None:
             print_success(f"Total: {stats.combined.total_assignments} assignments")
         except TimetableError as e:
             print_warning(f"Stage 3: {e}")
+
+        # Stage 4 Summary
+        console.print("\n[bold cyan]Stage 4 - AI Input[/bold cyan]")
+        try:
+            scheduling_input = loader.load_scheduling_input()
+            print_success(f"Scheduling Input: {len(scheduling_input.assignments)} assignments for AI")
+            print_success(f"Time Slots: {scheduling_input.metadata.total_time_slots}, Rooms: {scheduling_input.metadata.total_rooms}")
+        except TimetableError as e:
+            print_warning(f"Stage 4: {e}")
+
+        # Stage 5 Summary
+        console.print("\n[bold cyan]Stage 5 - AI Output[/bold cyan]")
+        try:
+            ai_schedule = loader.load_ai_schedule()
+            print_success(f"AI Schedule: {len(ai_schedule.schedule)} scheduled sessions")
+        except TimetableError as e:
+            print_warning(f"Stage 5: {e}")
+
+        # Stage 6 Summary
+        console.print("\n[bold cyan]Stage 6 - Enriched Output[/bold cyan]")
+        try:
+            enriched_timetable = loader.load_enriched_timetable()
+            print_success(f"Enriched Timetable: {enriched_timetable.metadata.total_sessions} complete sessions")
+        except TimetableError as e:
+            print_warning(f"Stage 6: {e}")
 
     except TimetableError as e:
         print_error(str(e))
