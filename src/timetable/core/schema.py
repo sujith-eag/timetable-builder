@@ -83,6 +83,8 @@ class SchemaValidator:
         "config": "stage1/config.schema.json",
         "faculty": "stage1/faculty.schema.json",
         "subject": "stage1/subject.schema.json",
+        "student_groups": "stage1/studentGroups.schema.json",
+        "room_preferences": "stage1/roomPreferences.schema.json",
         # Stage 2
         "subjects_full": "stage2/subjects.schema.json",
         "faculty_full": "stage2/faculty.schema.json",

@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://timetable.example.com/schemas/stage1/roomPreferences.json",
+  "title": "Room Preferences",
+  "description": "Room preferences and allocations for subject components",
+  "type": "object",
+  "required": ["roomPreferences"],
+  "properties": {
+    "roomPreferences": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["subjectCode", "componentType", "semester", "studentGroupId", "preferredRooms"],
+        "properties": {
+          "subjectCode": {
+            "type": "string",
+            "description": "Subject code (e.g., '25MCA11')"
+          },
+          "componentType": {
+            "type": "string",
+            "enum": ["theory", "tutorial", "practical"],
+            "description": "Type of subject component"
+          },
+          "semester": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 8,
+            "description": "Academic semester number"
+          },
+          "studentGroupId": {
+            "type": "string",
+            "description": "Student group identifier"
+          },
+          "preferredRooms": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "description": "List of preferred room codes in priority order"
+          },
+          "roomAllocations": {
+            "type": "object",
+            "patternProperties": {
+              "^.*$": {
+                "type": "string",
+                "description": "Room allocation mapping"
+              }
+            },
+            "description": "Optional specific room allocations"
+          }
+        }
+      },
+      "description": "List of room preferences for subject components"
+    }
+  }
+}

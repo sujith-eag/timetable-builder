@@ -1,0 +1,151 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://timetable.example.com/schemas/stage1/studentGroups.json",
+  "title": "Student Groups",
+  "description": "Student group definitions and elective group configurations",
+  "type": "object",
+  "required": ["studentGroups"],
+  "properties": {
+    "studentGroups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["semester", "section", "studentCount", "studentGroupId"],
+        "properties": {
+          "semester": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 8,
+            "description": "Academic semester number"
+          },
+          "section": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Section identifier (e.g., 'A', 'B')"
+          },
+          "studentCount": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of students in the group"
+          },
+          "studentGroupId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Unique group identifier"
+          },
+          "compulsorySubjects": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of compulsory subject codes"
+          }
+        }
+      },
+      "description": "List of student groups"
+    },
+    "electiveSubjectGroups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["groupId", "groupName", "subjectCodes"],
+        "properties": {
+          "groupId": {
+            "type": "string",
+            "description": "Unique elective group identifier"
+          },
+          "groupName": {
+            "type": "string",
+            "description": "Human-readable group name"
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional description"
+          },
+          "subjectCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of subject codes in this elective group"
+          }
+        }
+      },
+      "description": "Groups of elective subjects that can run in parallel"
+    },
+    "electiveStudentGroups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["studentGroupId", "parentGroupId", "studentCount", "sections", "sourceSections"],
+        "properties": {
+          "studentGroupId": {
+            "type": "string",
+            "description": "Unique elective student group identifier"
+          },
+          "parentGroupId": {
+            "type": "string",
+            "description": "Parent student group ID"
+          },
+          "studentCount": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of students in this elective group"
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Sections in this elective group"
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional description"
+          },
+          "sourceSections": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Source sections that feed into this elective group"
+          }
+        }
+      },
+      "description": "Student sub-groups for elective subject assignments"
+    },
+    "groupHierarchy": {
+      "type": "object",
+      "patternProperties": {
+        "^.*$": {
+          "type": "object",
+          "properties": {
+            "children": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Child group IDs"
+            },
+            "parent": {
+              "type": "string",
+              "description": "Parent group ID"
+            },
+            "parents": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Multiple parent group IDs"
+            },
+            "description": {
+              "type": "string",
+              "description": "Optional description"
+            }
+          }
+        }
+      },
+      "description": "Hierarchy relationships between student groups"
+    }
+  }
+}

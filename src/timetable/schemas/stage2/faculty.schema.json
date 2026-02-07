@@ -64,17 +64,12 @@
     "PrimaryAssignment": {
       "type": "object",
       "description": "A primary teaching assignment",
-      "required": ["subjectCode", "subjectName", "semester", "assignedComponents", "studentGroups"],
+      "required": ["subjectCode", "semester", "studentGroupIds", "componentIds", "componentTypes", "role", "weeklyHoursPerSection", "totalWeeklyHours", "sessionsPerWeekPerSection", "totalSessionsPerWeek"],
       "additionalProperties": false,
       "properties": {
         "subjectCode": {
           "type": "string",
           "description": "Subject code",
-          "minLength": 1
-        },
-        "subjectName": {
-          "type": "string",
-          "description": "Subject name",
           "minLength": 1
         },
         "semester": {
@@ -83,7 +78,28 @@
           "minimum": 1,
           "maximum": 8
         },
-        "assignedComponents": {
+        "sections": {
+          "type": "array",
+          "description": "Section letters assigned",
+          "items": {
+            "type": "string"
+          }
+        },
+        "studentGroupIds": {
+          "type": "array",
+          "description": "Student group IDs assigned",
+          "items": {
+            "type": "string"
+          }
+        },
+        "componentIds": {
+          "type": "array",
+          "description": "Component IDs assigned",
+          "items": {
+            "type": "string"
+          }
+        },
+        "componentTypes": {
           "type": "array",
           "description": "Types of components assigned",
           "items": {
@@ -91,12 +107,30 @@
             "enum": ["theory", "tutorial", "practical"]
           }
         },
-        "studentGroups": {
-          "type": "array",
-          "description": "Student groups taught",
-          "items": {
-            "type": "string"
-          }
+        "role": {
+          "type": "string",
+          "description": "Assignment role",
+          "enum": ["primary"]
+        },
+        "weeklyHoursPerSection": {
+          "type": "integer",
+          "description": "Weekly hours per section",
+          "minimum": 0
+        },
+        "totalWeeklyHours": {
+          "type": "integer",
+          "description": "Total weekly hours",
+          "minimum": 0
+        },
+        "sessionsPerWeekPerSection": {
+          "type": "integer",
+          "description": "Sessions per week per section",
+          "minimum": 0
+        },
+        "totalSessionsPerWeek": {
+          "type": "integer",
+          "description": "Total sessions per week",
+          "minimum": 0
         },
         "weeklyHours": {
           "type": "object",
@@ -119,17 +153,12 @@
     "SupportingAssignment": {
       "type": "object",
       "description": "A supporting teaching assignment",
-      "required": ["subjectCode", "subjectName", "semester", "supportComponents"],
+      "required": ["subjectCode", "semester", "role"],
       "additionalProperties": false,
       "properties": {
         "subjectCode": {
           "type": "string",
           "description": "Subject code",
-          "minLength": 1
-        },
-        "subjectName": {
-          "type": "string",
-          "description": "Subject name",
           "minLength": 1
         },
         "semester": {
@@ -138,13 +167,10 @@
           "minimum": 1,
           "maximum": 8
         },
-        "supportComponents": {
-          "type": "array",
-          "description": "Types of support components",
-          "items": {
-            "type": "string",
-            "enum": ["theory", "tutorial", "practical"]
-          }
+        "role": {
+          "type": "string",
+          "description": "Assignment role",
+          "enum": ["supporting"]
         },
         "primaryFaculty": {
           "type": "string",
