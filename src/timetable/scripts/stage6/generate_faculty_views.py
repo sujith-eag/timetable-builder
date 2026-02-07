@@ -154,19 +154,18 @@ class FacultyViewGenerator:
 def main():
     """Main execution function."""
     parser = argparse.ArgumentParser(description="Generate faculty schedule views from an enriched timetable.")
-    parser.add_argument(
-        "timetable_file",
-        type=Path,
-        help="Path to the enriched timetable JSON file (e.g., ../timetable_enriched.json)"
-    )
+    parser.add_argument("--data-dir", required=True, help="Data directory path")
     args = parser.parse_args()
 
+    # Automatically find the enriched timetable
+    timetable_file = Path(args.data_dir) / "stage_6" / "timetable_enriched.json"
+
     try:
-        generator = FacultyViewGenerator(args.timetable_file)
+        generator = FacultyViewGenerator(timetable_file)
         report_content = generator.generate_report()
         
-        output_dir = Path(__file__).parent.parent / "views"
-        output_dir.mkdir(exist_ok=True)
+        output_dir = Path(args.data_dir) / "stage_6" / "views"
+        output_dir.mkdir(exist_ok=True, parents=True)
         output_path = output_dir / "faculty_schedules.md"
         
         with open(output_path, 'w', encoding='utf-8') as f:

@@ -20,8 +20,8 @@ Date: October 26, 2025
 
 import json
 from pathlib import Path
-from typing import Dict, List, Set, Any
-from data_loader_stage2 import DataLoaderStage2
+from typing import Dict, List, Set, Any, Optional
+from timetable.scripts.stage3.data_loader_stage2 import DataLoaderStage2
 
 
 class OverlapMatrixGenerator:
@@ -272,14 +272,24 @@ class OverlapMatrixGenerator:
         print("\n" + "=" * 80)
 
 
-def main():
+def main(data_dir=None):
     """Generate the overlap constraint matrix."""
+    import argparse
+    
+    if data_dir is None:
+        parser = argparse.ArgumentParser(description="Generate student group overlap constraint matrix")
+        parser.add_argument("--data-dir", required=True, help="Data directory path")
+        args = parser.parse_args()
+        data_dir = args.data_dir
+    
     print("Generating Student Group Overlap Constraint Matrix")
     print("=" * 80)
+    print(f"Data directory: {data_dir}")
+    print()
     
     # Load data
     print("\n1. Loading data...")
-    loader = DataLoaderStage2()
+    loader = DataLoaderStage2(data_dir)
     loader.load_all()
     print("   ✓ Data loaded successfully")
     

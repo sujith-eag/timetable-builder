@@ -8,12 +8,7 @@ import json
 from pathlib import Path
 from collections import defaultdict
 from datetime import datetime
-
-# Paths
-STAGE_3_DIR = Path(__file__).parent.parent
-ASSIGNMENTS_SEM3 = STAGE_3_DIR / "teachingAssignments_sem3.json"
-ASSIGNMENTS_SEM1 = STAGE_3_DIR / "teachingAssignments_sem1.json"
-REPORTS_DIR = STAGE_3_DIR / "reports"
+from typing import Optional
 
 def load_assignments(filepath):
     """Load teaching assignments from JSON file."""
@@ -413,18 +408,37 @@ def generate_summary_report(sem1_data, sem3_data):
     
     return ''.join(report)
 
-def main():
+def main(data_dir=None):
+    """Generate detailed reports for Stage 3."""
+    import argparse
+    
+    if data_dir is None:
+        parser = argparse.ArgumentParser(description="Generate reports for Stage 3 assignments")
+        parser.add_argument("--data-dir", required=True, help="Data directory path")
+        args = parser.parse_args()
+        data_dir = Path(args.data_dir)
+    else:
+        data_dir = Path(data_dir)
+    
+    # Construct paths
+    stage_3_dir = data_dir / "stage_3"
+    assignments_sem3 = stage_3_dir / "teachingAssignments_sem3.json"
+    assignments_sem1 = stage_3_dir / "teachingAssignments_sem1.json"
+    reports_dir = stage_3_dir / "reports"
+    
     print("Generating detailed reports for Stage 3...")
     print("=" * 70)
+    print(f"Data directory: {data_dir}")
+    print()
     
     # Create reports directory
-    REPORTS_DIR.mkdir(exist_ok=True)
-    print(f"\n📁 Reports directory: {REPORTS_DIR.relative_to(STAGE_3_DIR.parent)}")
+    reports_dir.mkdir(exist_ok=True)
+    print(f"\n📁 Reports directory: {reports_dir}")
     
     # Load data
     print("\n📂 Loading teaching assignments...")
-    sem1_data = load_assignments(ASSIGNMENTS_SEM1)
-    sem3_data = load_assignments(ASSIGNMENTS_SEM3)
+    sem1_data = load_assignments(assignments_sem1)
+    sem3_data = load_assignments(assignments_sem3)
     print(f"   ✓ Loaded {len(sem1_data['assignments']) + len(sem3_data['assignments'])} total assignments")
     
     # Generate reports
@@ -441,7 +455,7 @@ def main():
         print(f"\n📝 Generating {title}...")
         content = generator_func(sem1_data, sem3_data)
         
-        filepath = REPORTS_DIR / filename
+        filepath = reports_dir / filename
         with open(filepath, 'w') as f:
             f.write(content)
         
@@ -456,7 +470,7 @@ def main():
     for filename in generated:
         print(f"   • {filename}")
     
-    print(f"\n📂 All reports saved in: {REPORTS_DIR.relative_to(STAGE_3_DIR.parent)}")
+    print(f"\n📂 All reports saved in: {reports_dir}")
 
 if __name__ == '__main__':
     main()

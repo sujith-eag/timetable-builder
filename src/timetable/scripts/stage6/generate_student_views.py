@@ -16,15 +16,17 @@ import sys
 class StudentViewGenerator:
     """Generates Markdown schedules for each student section."""
 
-    def __init__(self, timetable_path: Path):
+    def __init__(self, timetable_path: Path, data_dir: Path = None):
         """
         Initializes the generator.
         
         Args:
             timetable_path: Path to the enriched timetable JSON file.
+            data_dir: Base data directory for outputs.
         """
         print("📂 Loading timetable...")
         self.timetable_data = self._load_json(timetable_path)
+        self.data_dir = data_dir or timetable_path.parent.parent
 
         # Intelligently find the session list
         session_keys = ['timetable_A', 'timetable', 'sessions']
@@ -87,8 +89,8 @@ class StudentViewGenerator:
             sem_sections = sorted(list(all_sections_by_sem[sem]))
             report_content = self._generate_semester_report(sem, sem_sections, sessions_by_sem[sem])
             
-            output_dir = Path(__file__).parent.parent / "views"
-            output_dir.mkdir(exist_ok=True)
+            output_dir = self.data_dir / "stage_6" / "views"
+            output_dir.mkdir(exist_ok=True, parents=True)
             output_path = output_dir / f"student_schedules_sem{sem}.md"
             
             with open(output_path, 'w', encoding='utf-8') as f:
@@ -169,15 +171,14 @@ class StudentViewGenerator:
 def main():
     """Main execution function."""
     parser = argparse.ArgumentParser(description="Generate student schedule views from an enriched timetable.")
-    parser.add_argument(
-        "timetable_file",
-        type=Path,
-        help="Path to the enriched timetable JSON file (e.g., ../timetable_enriched.json)"
-    )
+    parser.add_argument("--data-dir", required=True, help="Data directory path")
     args = parser.parse_args()
 
+    # Automatically find the enriched timetable
+    timetable_file = Path(args.data_dir) / "stage_6" / "timetable_enriched.json"
+
     try:
-        generator = StudentViewGenerator(args.timetable_file)
+        generator = StudentViewGenerator(timetable_file, Path(args.data_dir))
         generator.generate_reports()
             
         print(f"\n✅ Student schedule reports successfully generated in the `stage_6/views/` directory.")

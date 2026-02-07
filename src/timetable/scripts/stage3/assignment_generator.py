@@ -15,7 +15,7 @@ Date: October 26, 2025
 import json
 from pathlib import Path
 from typing import Dict, List, Any, Optional
-from data_loader_stage2 import DataLoaderStage2
+from timetable.scripts.stage3.data_loader_stage2 import DataLoaderStage2
 
 
 class AssignmentGenerator:
@@ -306,8 +306,7 @@ class AssignmentGenerator:
     def _load_differentiation_rules(self) -> Dict[str, Any]:
         """Load elective differentiation rules from Stage 1."""
         try:
-            stage1_path = Path(__file__).parent.parent.parent / "stage_1"
-            rules_file = stage1_path / "electiveDifferentiation.json"
+            rules_file = self.loader.stage_1_path / "electiveDifferentiation.json"
             
             if rules_file.exists():
                 with open(rules_file, 'r', encoding='utf-8') as f:
@@ -404,12 +403,20 @@ class AssignmentGenerator:
 
 def main():
     """Test the assignment generator."""
+    import argparse
+    
+    parser = argparse.ArgumentParser(description="Test AssignmentGenerator")
+    parser.add_argument("--data-dir", required=True, help="Data directory path")
+    args = parser.parse_args()
+    
     print("Testing Assignment Generator")
     print("=" * 80)
+    print(f"Data directory: {args.data_dir}")
+    print()
     
     # Load data
     print("\n1. Loading data...")
-    loader = DataLoaderStage2()
+    loader = DataLoaderStage2(args.data_dir)
     loader.load_all()
     print("   ✓ Data loaded")
     

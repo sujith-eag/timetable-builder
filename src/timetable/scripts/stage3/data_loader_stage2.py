@@ -22,20 +22,14 @@ from typing import Dict, List, Any, Optional
 class DataLoaderStage2:
     """Loads all required data from Stage 1 and Stage 2 for Stage 3 processing."""
     
-    def __init__(self, base_path: Optional[str] = None):
+    def __init__(self, data_dir: str):
         """
         Initialize the data loader.
         
         Args:
-            base_path: Base path to V4 directory. If None, auto-detects from script location.
+            data_dir: Path to data directory containing stage_1/ and stage_2/ subdirectories.
         """
-        if base_path is None:
-            # Auto-detect base path (assumes script is in V4/stage_3/scripts/)
-            script_dir = Path(__file__).parent
-            self.base_path = script_dir.parent.parent
-        else:
-            self.base_path = Path(base_path)
-        
+        self.base_path = Path(data_dir)
         self.stage_1_path = self.base_path / "stage_1"
         self.stage_2_path = self.base_path / "stage_2"
         
@@ -242,10 +236,18 @@ class DataLoaderStage2:
 
 def main():
     """Test the data loader."""
+    import argparse
+    
+    parser = argparse.ArgumentParser(description="Test DataLoaderStage2")
+    parser.add_argument("--data-dir", required=True, help="Data directory path")
+    args = parser.parse_args()
+    
     print("Testing DataLoaderStage2...")
     print("=" * 60)
+    print(f"Data directory: {args.data_dir}")
+    print()
     
-    loader = DataLoaderStage2()
+    loader = DataLoaderStage2(args.data_dir)
     
     # Load all data
     print("\n1. Loading all data...")

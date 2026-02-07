@@ -10,7 +10,19 @@ from pathlib import Path
 from typing import Dict, List
 
 class SchedulingInputViewer:
-    def __init__(self, input_file: Path):
+    def __init__(self, data_dir: str = None):
+        if data_dir is None:
+            # Auto-detect for development
+            script_dir = Path(__file__).parent
+            self.data_dir = script_dir.parent.parent
+        else:
+            self.data_dir = Path(data_dir)
+        
+        input_file = self.data_dir / "stage_4" / "schedulingInput.json"
+        
+        if not input_file.exists():
+            raise FileNotFoundError(f"Scheduling input not found: {input_file}")
+        
         with open(input_file, 'r') as f:
             self.data = json.load(f)
     
@@ -218,78 +230,79 @@ class SchedulingInputViewer:
                 print(f"  {group_id:15s} ✓ {', '.join(parallel)}")
         print()
 
+    def show_help(self):
+        """Show help information"""
+        print("Usage: python3 view_scheduling_input.py [--data-dir DIR] <command> [args]")
+        print()
+        print("Commands:")
+        print("  summary                    Show overall summary (default)")
+        print("  assignments [filter]       List all assignments")
+        print("                             Filters: sem1, sem3, theory, practical, tutorial")
+        print("  assignment <id>            Show details for specific assignment")
+        print("  slots                      Show all time slots by day")
+        print("  combinations               Show valid slot combinations")
+        print("  rooms                      Show all available rooms")
+        print("  faculty                    Show faculty members and their loads")
+        print("  groups                     Show student groups")
+        print("  constraints                Show student group overlap constraints")
+        print()
+        print("Examples:")
+        print("  python3 view_scheduling_input.py --data-dir ./data summary")
+        print("  python3 view_scheduling_input.py assignments sem1")
+        print("  python3 view_scheduling_input.py assignment TA_25MCA15_TH_B_001")
+        print("  python3 view_scheduling_input.py slots")
+        print()
+
 
 def main():
-    input_file = Path(__file__).parent.parent / "schedulingInput.json"
+    """Main function with command line interface"""
+    import argparse
     
-    if not input_file.exists():
-        print(f"❌ Error: {input_file} not found")
-        print("   Run build_scheduling_input.py first!")
-        return 1
+    parser = argparse.ArgumentParser(description="View scheduling input data")
+    parser.add_argument("--data-dir", help="Data directory path (default: auto-detect)")
+    parser.add_argument("command", nargs="?", help="Command to run")
+    parser.add_argument("args", nargs="*", help="Additional arguments")
     
-    viewer = SchedulingInputViewer(input_file)
+    args = parser.parse_args()
     
-    if len(sys.argv) > 1:
-        command = sys.argv[1]
+    try:
+        viewer = SchedulingInputViewer(args.data_dir)
         
-        if command == "summary":
+        if args.command == "summary" or not args.command:
             viewer.show_summary()
-        elif command == "assignments":
-            filter_by = sys.argv[2] if len(sys.argv) > 2 else None
+        elif args.command == "assignments":
+            filter_by = args.args[0] if args.args else None
             viewer.list_assignments(filter_by)
-        elif command == "assignment":
-            if len(sys.argv) < 3:
+        elif args.command == "assignment":
+            if not args.args:
                 print("Usage: view_scheduling_input.py assignment <assignment_id>")
                 return 1
-            viewer.show_assignment_details(sys.argv[2])
-        elif command == "slots":
+            viewer.show_assignment_details(args.args[0])
+        elif args.command == "slots":
             viewer.show_time_slots()
-        elif command == "combinations":
+        elif args.command == "combinations":
             viewer.show_slot_combinations()
-        elif command == "rooms":
+        elif args.command == "rooms":
             viewer.show_rooms()
-        elif command == "faculty":
+        elif args.command == "faculty":
             viewer.show_faculty()
-        elif command == "groups":
+        elif args.command == "groups":
             viewer.show_student_groups()
-        elif command == "constraints":
-            viewer.show_constraint_matrix()
+        elif args.command == "constraints":
+            viewer.show_constraints()
         else:
-            print(f"Unknown command: {command}")
-            print_usage()
+            viewer.show_help()
             return 1
-    else:
-        print_usage()
-        viewer.show_summary()
-    
-    return 0
-
-
-def print_usage():
-    print("=" * 70)
-    print("SCHEDULING INPUT VIEWER")
-    print("=" * 70)
-    print()
-    print("Usage: python3 view_scheduling_input.py <command> [args]")
-    print()
-    print("Commands:")
-    print("  summary                    Show overall summary (default)")
-    print("  assignments [filter]       List all assignments")
-    print("                             Filters: sem1, sem3, theory, practical, tutorial")
-    print("  assignment <id>            Show details for specific assignment")
-    print("  slots                      Show all time slots by day")
-    print("  combinations               Show valid slot combinations")
-    print("  rooms                      Show all available rooms")
-    print("  faculty                    Show faculty members and their loads")
-    print("  groups                     Show student groups")
-    print("  constraints                Show student group overlap constraints")
-    print()
-    print("Examples:")
-    print("  python3 view_scheduling_input.py summary")
-    print("  python3 view_scheduling_input.py assignments sem1")
-    print("  python3 view_scheduling_input.py assignment TA_25MCA15_TH_B_001")
-    print("  python3 view_scheduling_input.py slots")
-    print()
+            
+        return 0
+        
+    except FileNotFoundError as e:
+        print(f"❌ Error: {e}")
+        print("   Run 'timetable build stage4' first!")
+        return 1
+    except Exception as e:
+        print(f"❌ Error: {e}")
+        return 1
 
 
 if __name__ == "__main__":

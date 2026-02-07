@@ -11,9 +11,11 @@ from datetime import datetime
 from typing import Dict, List, Any
 
 class ScheduleTemplateGenerator:
-    def __init__(self):
-        self.stage4_dir = Path(__file__).parent.parent.parent / "stage_4"
-        self.stage5_dir = Path(__file__).parent.parent.parent / "stage_5"
+    def __init__(self, data_dir: str):
+        self.data_dir = Path(data_dir)
+        
+        self.stage4_dir = self.data_dir / "stage_4"
+        self.stage5_dir = self.data_dir / "stage_5"
         self.stage5_dir.mkdir(exist_ok=True)
         
     def load_scheduling_input(self) -> Dict:
@@ -225,8 +227,14 @@ class ScheduleTemplateGenerator:
 
 
 def main():
+    import argparse
+    
+    parser = argparse.ArgumentParser(description="Generate schedule template")
+    parser.add_argument("--data-dir", required=True, help="Data directory path")
+    args = parser.parse_args()
+    
     try:
-        generator = ScheduleTemplateGenerator()
+        generator = ScheduleTemplateGenerator(args.data_dir)
         
         print("=" * 70)
         print("STAGE 5: GENERATE SCHEDULE TEMPLATE")

@@ -208,15 +208,24 @@ class Stage3Validator:
         print("\n" + "=" * 80)
 
 
-def main():
+def main(data_dir=None):
     """Main validation function."""
+    import argparse
+    
+    if data_dir is None:
+        parser = argparse.ArgumentParser(description="Validate Stage 3 teaching assignments")
+        parser.add_argument("--data-dir", required=True, help="Data directory path")
+        args = parser.parse_args()
+        data_dir = args.data_dir
+    
     print("=" * 80)
     print("STAGE 3: VALIDATE TEACHING ASSIGNMENTS")
     print("=" * 80)
+    print(f"Data directory: {data_dir}")
+    print()
     
     # Determine base path
-    script_dir = Path(__file__).parent
-    base_path = script_dir.parent.parent
+    base_path = Path(data_dir)
     
     validator = Stage3Validator(base_path)
     

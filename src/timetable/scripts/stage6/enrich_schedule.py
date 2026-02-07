@@ -11,10 +11,12 @@ from datetime import datetime
 from typing import Dict, List, Any
 
 class ScheduleEnricher:
-    def __init__(self):
-        self.stage4_dir = Path(__file__).parent.parent.parent / "stage_4"
-        self.stage5_dir = Path(__file__).parent.parent.parent / "stage_5"
-        self.stage6_dir = Path(__file__).parent.parent.parent / "stage_6"
+    def __init__(self, data_dir: str):
+        self.data_dir = Path(data_dir)
+        
+        self.stage4_dir = self.data_dir / "stage_4"
+        self.stage5_dir = self.data_dir / "stage_5"
+        self.stage6_dir = self.data_dir / "stage_6"
         self.stage6_dir.mkdir(exist_ok=True)
         
         self.scheduling_input = None
@@ -324,23 +326,20 @@ class ScheduleEnricher:
 
 
 def main():
-    if len(sys.argv) < 2:
-        print("Usage: python3 enrich_schedule.py <schedule_file>")
-        print()
-        print("Examples:")
-        print("  python3 enrich_schedule.py ../stage_5/scheduleTemplate.json")
-        print("  python3 enrich_schedule.py ../stage_5/scheduleExample.json")
-        print("  python3 enrich_schedule.py my_schedule.json")
-        return 1
+    import argparse
     
-    schedule_file = Path(sys.argv[1])
-    
-    if not schedule_file.exists():
-        print(f"❌ Error: File not found: {schedule_file}")
-        return 1
+    parser = argparse.ArgumentParser(description="Enrich schedule to full timetable format")
+    parser.add_argument("--data-dir", required=True, help="Data directory path")
+    args = parser.parse_args()
     
     try:
-        enricher = ScheduleEnricher()
+        enricher = ScheduleEnricher(args.data_dir)
+        
+        # Automatically find the schedule file in stage5
+        schedule_file = enricher.stage5_dir / "ai_solved_schedule.json"
+        if not schedule_file.exists():
+            print(f"❌ Error: Schedule file not found: {schedule_file}")
+            return 1
         
         print("=" * 70)
         print("STAGE 6: ENRICH SCHEDULE TO FULL TIMETABLE")

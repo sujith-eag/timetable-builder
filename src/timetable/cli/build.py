@@ -106,93 +106,74 @@ def build_stage2(
     """
     try:
         data_path = get_data_dir(data_dir)
-        # Scripts are now in the package, not in the data directory
-        import timetable
-        scripts_dir = Path(timetable.__file__).parent / "scripts" / "stage2"
-        
-        if not scripts_dir.exists():
-            raise click.ClickException(f"Stage 2 scripts directory not found: {scripts_dir}")
-        
+
         print_header("Stage 2 Build", f"Data directory: {data_path}")
         console.print()
-        
-        # Check prerequisites
-        print_info("Checking prerequisites...")
-        loader = DataLoader(data_path)
-        try:
-            subjects = loader.load_subjects()
-            faculty = loader.load_faculty()
-            print_success(f"Stage 1 data found: {len(subjects)} subjects, {len(faculty)} faculty")
-        except TimetableError as e:
-            print_error(f"Stage 1 data not found or invalid: {e}")
+
+        from .build_stages.stage2 import build_stage2 as build_stage2_func
+        results = build_stage2_func(data_path, validate, verbose)
+
+        # Check prerequisites result
+        prereq_result = results[0]
+        if not prereq_result[1]:  # Not successful
+            print_error(prereq_result[2])
             sys.exit(1)
-        
+
         console.print()
-        
-        build_scripts = [
-            ("build_subjects_full.py", "Building subjects with components"),
-            ("build_faculty_full.py", "Building faculty with workload"),
-        ]
-        
-        if validate:
-            build_scripts.append(("validate_stage2.py", "Validating Stage 2 data"))
-        
-        results = []
-        
+        print_success(prereq_result[2])
+
+        console.print()
+
+        # Process build results
+        build_results = results[1:]
+        all_success = True
+
         with create_progress() as progress:
             task = progress.add_task(
                 "Building Stage 2...",
-                total=len(build_scripts),
+                total=len(build_results),
                 status="Starting"
             )
-            
-            for script_name, description in build_scripts:
+
+            for description, success, output in build_results:
                 progress.update(task, status=description)
-                script_path = scripts_dir / script_name
-                
-                if not script_path.exists():
-                    results.append((description, False, f"Script not found: {script_path}"))
-                    progress.update(task, advance=1)
-                    continue
-                
-                success, output = _run_build_script(script_path, scripts_dir, data_path, description)
-                results.append((description, success, output))
-                
+
                 if verbose and output:
                     console.print(f"\n[dim]{output}[/dim]")
-                
+
+                if not success:
+                    all_success = False
+                    if not verbose:
+                        # Show error output even if not verbose
+                        for line in output.split('\n')[-5:]:
+                            if line.strip():
+                                console.print(f"    [dim]{line}[/dim]")
+
                 progress.update(task, advance=1)
-            
+
             progress.update(task, status="Complete")
-        
+
         console.print()
-        
-        # Show results
-        all_success = True
-        for description, success, output in results:
+
+        # Show final results
+        for description, success, _ in build_results:
             if success:
                 print_success(description)
             else:
                 print_error(description)
-                if not verbose:
-                    # Show error output even if not verbose
-                    for line in output.split('\n')[-5:]:
-                        if line.strip():
-                            console.print(f"    [dim]{line}[/dim]")
-                all_success = False
-        
+
         console.print()
-        
+
         if all_success:
             # Show generated files
             stage2_dir = data_path / "stage_2"
             files = ["subjects2Full.json", "faculty2Full.json"]
-            
+
             console.print(Panel.fit(
                 "[bold green]✓ Stage 2 build complete![/bold green]",
                 border_style="green"
             ))
-            
+
             console.print("\n[bold]Generated files:[/bold]")
             for filename in files:
                 filepath = stage2_dir / filename
@@ -202,7 +183,7 @@ def build_stage2(
         else:
             print_error("Stage 2 build failed. Check errors above.")
             sys.exit(1)
-        
+
     except TimetableError as e:
         print_error(str(e))
         sys.exit(1)
@@ -253,97 +234,72 @@ def build_stage3(
     """
     try:
         data_path = get_data_dir(data_dir)
-        # Scripts are now in the package, not in the data directory
-        import timetable
-        scripts_dir = Path(timetable.__file__).parent / "scripts" / "stage3"
-        
-        if not scripts_dir.exists():
-            raise click.ClickException(f"Stage 3 scripts directory not found: {scripts_dir}")
-        
+
         print_header("Stage 3 Build", f"Data directory: {data_path}")
         console.print()
-        
-        # Check prerequisites
-        print_info("Checking prerequisites...")
-        loader = DataLoader(data_path)
-        try:
-            faculty = loader.load_faculty_full()
-            subjects = loader.load_subjects_full()
-            print_success(f"Stage 2 data found: {len(subjects)} subjects, {len(faculty)} faculty")
-        except TimetableError as e:
-            print_error(f"Stage 2 data not found or invalid: {e}")
+
+        from .build_stages.stage3 import build_stage3 as build_stage3_func
+        results = build_stage3_func(data_path, validate, reports, verbose)
+
+        # Check prerequisites result
+        prereq_result = results[0]
+        if not prereq_result[1]:  # Not successful
+            print_error(prereq_result[2])
             print_info("Run 'timetable build stage2' first")
             sys.exit(1)
-        
+
         console.print()
-        
-        build_scripts = [
-            ("generate_overlap_matrix.py", "Generating overlap constraints"),
-            ("build_assignments_sem3.py", "Building Semester 3 assignments"),
-            ("build_assignments_sem1.py", "Building Semester 1 assignments"),
-        ]
-        
-        if validate:
-            build_scripts.append(("validate_stage3.py", "Validating assignments"))
-        
-        build_scripts.append(("generate_statistics.py", "Generating statistics"))
-        
-        if reports:
-            build_scripts.append(("generate_reports.py", "Generating reports"))
-        
-        results = []
-        
+        print_success(prereq_result[2])
+
+        console.print()
+
+        # Process build results
+        build_results = results[1:]
+        all_success = True
+
         with create_progress() as progress:
             task = progress.add_task(
                 "Building Stage 3...",
-                total=len(build_scripts),
+                total=len(build_results),
                 status="Starting"
             )
-            
-            for script_name, description in build_scripts:
+
+            for description, success, output in build_results:
                 progress.update(task, status=description)
-                script_path = scripts_dir / script_name
-                
-                if not script_path.exists():
-                    results.append((description, False, f"Script not found: {script_path}"))
-                    progress.update(task, advance=1)
-                    continue
-                
-                success, output = _run_build_script(script_path, scripts_dir, data_path, description)
-                results.append((description, success, output))
-                
+
                 if verbose and output:
                     console.print(f"\n[dim]{output}[/dim]")
-                
+
+                if not success:
+                    all_success = False
+                    if not verbose:
+                        for line in output.split('\n')[-5:]:
+                            if line.strip():
+                                console.print(f"    [dim]{line}[/dim]")
+
                 progress.update(task, advance=1)
-            
+
             progress.update(task, status="Complete")
-        
+
         console.print()
-        
-        # Show results
-        all_success = True
-        for description, success, output in results:
+
+        # Show final results
+        for description, success, _ in build_results:
             if success:
                 print_success(description)
             else:
                 print_error(description)
-                if not verbose:
-                    for line in output.split('\n')[-5:]:
-                        if line.strip():
-                            console.print(f"    [dim]{line}[/dim]")
-                all_success = False
-        
+
         console.print()
-        
+
         if all_success:
             stage3_dir = data_path / "stage_3"
-            
+
             console.print(Panel.fit(
                 "[bold green]✓ Stage 3 build complete![/bold green]",
                 border_style="green"
             ))
-            
+
             console.print("\n[bold]Generated files:[/bold]")
             files = [
                 "teachingAssignments_sem1.json",
@@ -356,7 +312,7 @@ def build_stage3(
                 if filepath.exists():
                     size = filepath.stat().st_size
                     console.print(f"  • {filename} ({size:,} bytes)")
-            
+
             if reports and (stage3_dir / "reports").exists():
                 console.print("\n[bold]Reports:[/bold]")
                 for report in sorted((stage3_dir / "reports").glob("*.md")):
@@ -364,7 +320,7 @@ def build_stage3(
         else:
             print_error("Stage 3 build failed. Check errors above.")
             sys.exit(1)
-        
+
     except TimetableError as e:
         print_error(str(e))
         sys.exit(1)
@@ -378,7 +334,7 @@ def build_stage3(
 )
 @click.option(
     "--validate/--no-validate",
-    default=True,
+    default=False,
     help="Run validation after building.",
 )
 @click.option(
@@ -405,82 +361,53 @@ def build_stage4(
     """
     try:
         data_path = get_data_dir(data_dir)
-        # Scripts are now in the package, not in the data directory
-        import timetable
-        scripts_dir = Path(timetable.__file__).parent / "scripts" / "stage4"
-        
-        if not scripts_dir.exists():
-            raise click.ClickException(f"Stage 4 scripts directory not found: {scripts_dir}")
-        
+
         print_header("Stage 4 Build", f"Data directory: {data_path}")
         console.print()
 
-        # Check prerequisites
-        print_info("Checking prerequisites...")
-        loader = DataLoader(data_path)
-        try:
-            assignments1 = loader.load_teaching_assignments(semester=1)
-            assignments3 = loader.load_teaching_assignments(semester=3)
-            overlap = loader.load_overlap_constraints()
-            print_success(f"Stage 3 data found: {len(assignments1.assignments)} sem1, {len(assignments3.assignments)} sem3 assignments")
-        except TimetableError as e:
-            print_error(f"Stage 3 data not found or invalid: {e}")
+        from .build_stages.stage4 import build_stage4 as build_stage4_func
+        results = build_stage4_func(data_path, validate, verbose)
+
+        # Check prerequisites result
+        prereq_result = results[0]
+        if not prereq_result[1]:  # Not successful
+            print_error(prereq_result[2])
             print_info("Run 'timetable build stage3' first")
             sys.exit(1)
 
         console.print()
+        print_success(prereq_result[2])
 
-        build_scripts = [
-            ("build_scheduling_input.py", "Building scheduling input for AI solver"),
-        ]
+        console.print()
 
-        if validate:
-            build_scripts.append(("validate_stage4.py", "Validating Stage 4 data"))
-
-        results = []
+        # Process build results
+        build_results = results[1:]
+        all_success = True
 
         with create_progress() as progress:
             task = progress.add_task(
                 "Building Stage 4...",
-                total=len(build_scripts),
+                total=len(build_results),
                 status="Starting"
             )
 
-            for script_name, description in build_scripts:
+            for description, success, output in build_results:
                 progress.update(task, status=description)
-                script_path = scripts_dir / script_name
 
-                if not script_path.exists():
-                    results.append((description, False, f"Script not found: {script_path}"))
-                    progress.update(task, advance=1)
-                    continue
-
-                success, output = _run_build_script(script_path, scripts_dir, data_path, description)
-                results.append((description, success, output))
-                
                 if verbose and output:
                     console.print(f"\n[dim]{output}[/dim]")
-                
+
+                if not success:
+                    all_success = False
+                    if not verbose:
+                        for line in output.split('\n')[-5:]:
+                            if line.strip():
+                                console.print(f"    [dim]{line}[/dim]")
+
                 progress.update(task, advance=1)
-            
+
             progress.update(task, status="Complete")
-        
-        console.print()
-        
-        # Show results
-        all_success = True
-        for description, success, output in results:
-            if success:
-                print_success(description)
-            else:
-                print_error(description)
-                if not verbose:
-                    # Show error output even if not verbose
-                    for line in output.split('\n')[-5:]:
-                        if line.strip():
-                            console.print(f"    [dim]{line}[/dim]")
-                all_success = False
-        
+
         console.print()
 
         if all_success:
@@ -516,7 +443,7 @@ def build_stage4(
 )
 @click.option(
     "--validate/--no-validate",
-    default=True,
+    default=False,
     help="Run validation after building.",
 )
 @click.option(
@@ -543,79 +470,52 @@ def build_stage5(
     """
     try:
         data_path = get_data_dir(data_dir)
-        # Scripts are now in the package, not in the data directory
-        import timetable
-        scripts_dir = Path(timetable.__file__).parent / "scripts" / "stage5"
-        
-        if not scripts_dir.exists():
-            raise click.ClickException(f"Stage 5 scripts directory not found: {scripts_dir}")
-        
+
         print_header("Stage 5 Build", f"Data directory: {data_path}")
         console.print()
 
-        # Check prerequisites
-        print_info("Checking prerequisites...")
-        loader = DataLoader(data_path)
-        try:
-            scheduling_input = loader.load_scheduling_input()
-            print_success(f"Stage 4 data found: {len(scheduling_input.assignments)} assignments")
-        except TimetableError as e:
-            print_error(f"Stage 4 data not found or invalid: {e}")
+        from .build_stages.stage5 import build_stage5 as build_stage5_func
+        results = build_stage5_func(data_path, validate, verbose)
+
+        # Check prerequisites result
+        prereq_result = results[0]
+        if not prereq_result[1]:  # Not successful
+            print_error(prereq_result[2])
             print_info("Run 'timetable build stage4' first")
             sys.exit(1)
 
         console.print()
+        print_success(prereq_result[2])
 
-        build_scripts = [
-            ("generate_schedule_template.py", "Generating AI schedule template"),
-        ]
+        console.print()
 
-        if validate:
-            build_scripts.append(("validate_stage5.py", "Validating Stage 5 data"))
-
-        results = []
+        # Process build results
+        build_results = results[1:]
+        all_success = True
 
         with create_progress() as progress:
             task = progress.add_task(
                 "Building Stage 5...",
-                total=len(build_scripts),
+                total=len(build_results),
                 status="Starting"
             )
 
-            for script_name, description in build_scripts:
+            for description, success, output in build_results:
                 progress.update(task, status=description)
-                script_path = scripts_dir / script_name
 
-                if not script_path.exists():
-                    results.append((description, False, f"Script not found: {script_path}"))
-                    progress.update(task, advance=1)
-                    continue
-
-                success, output = _run_build_script(script_path, scripts_dir, data_path, description)
-                results.append((description, success, output))
-                
                 if verbose and output:
                     console.print(f"\n[dim]{output}[/dim]")
-                
+
+                if not success:
+                    all_success = False
+                    if not verbose:
+                        for line in output.split('\n')[-5:]:
+                            if line.strip():
+                                console.print(f"    [dim]{line}[/dim]")
+
                 progress.update(task, advance=1)
-            
+
             progress.update(task, status="Complete")
-        
-        console.print()
-        
-        # Show results
-        all_success = True
-        for description, success, output in results:
-            if success:
-                print_success(description)
-            else:
-                print_error(description)
-                if not verbose:
-                    # Show error output even if not verbose
-                    for line in output.split('\n')[-5:]:
-                        if line.strip():
-                            console.print(f"    [dim]{line}[/dim]")
-                all_success = False
 
         console.print()
 
@@ -687,91 +587,52 @@ def build_stage6(
     """
     try:
         data_path = get_data_dir(data_dir)
-        # Scripts are now in the package, not in the data directory
-        import timetable
-        scripts_dir = Path(timetable.__file__).parent / "scripts" / "stage6"
-        
-        if not scripts_dir.exists():
-            raise click.ClickException(f"Stage 6 scripts directory not found: {scripts_dir}")
 
         print_header("Stage 6 Build", f"Data directory: {data_path}")
         console.print()
 
-        # Check prerequisites
-        print_info("Checking prerequisites...")
-        loader = DataLoader(data_path)
-        try:
-            ai_schedule = loader.load_ai_schedule()
-            print_success(f"Stage 5 data found: {len(ai_schedule.schedule)} scheduled sessions")
-        except TimetableError as e:
-            print_error(f"Stage 5 data not found or invalid: {e}")
+        from .build_stages.stage6 import build_stage6 as build_stage6_func
+        results = build_stage6_func(data_path, validate, views, verbose)
+
+        # Check prerequisites result
+        prereq_result = results[0]
+        if not prereq_result[1]:  # Not successful
+            print_error(prereq_result[2])
             print_info("Run 'timetable build stage5' first")
             sys.exit(1)
 
         console.print()
+        print_success(prereq_result[2])
 
-        build_scripts = [
-            ("enrich_schedule.py", "Enriching schedule with full details"),
-            ("analyze_schedule.py", "Analyzing schedule quality"),
-        ]
+        console.print()
 
-        if validate:
-            build_scripts.append(("validate_assignments.py", "Validating enriched assignments"))
-
-        if views:
-            build_scripts.extend([
-                ("generate_faculty_views.py", "Generating faculty views"),
-                ("generate_student_views.py", "Generating student views"),
-            ])
-
-        results = []
+        # Process build results
+        build_results = results[1:]
+        all_success = True
 
         with create_progress() as progress:
             task = progress.add_task(
                 "Building Stage 6...",
-                total=len(build_scripts),
+                total=len(build_results),
                 status="Starting"
             )
 
-            for script_name, description in build_scripts:
+            for description, success, output in build_results:
                 progress.update(task, status=description)
-                script_path = scripts_dir / script_name
 
-                if not script_path.exists():
-                    results.append((description, False, f"Script not found: {script_path}"))
-                    progress.update(task, advance=1)
-                    continue
-
-                # Special handling for enrich_schedule.py which needs schedule file argument
-                if script_name == "enrich_schedule.py":
-                    success, output = _run_build_script(script_path, scripts_dir, data_path, description, "ai_solved_schedule.json")
-                else:
-                    success, output = _run_build_script(script_path, scripts_dir, data_path, description)
-                
-                results.append((description, success, output))
-                
                 if verbose and output:
                     console.print(f"\n[dim]{output}[/dim]")
-                
+
+                if not success:
+                    all_success = False
+                    if not verbose:
+                        for line in output.split('\n')[-5:]:
+                            if line.strip():
+                                console.print(f"    [dim]{line}[/dim]")
+
                 progress.update(task, advance=1)
-            
+
             progress.update(task, status="Complete")
-        
-        console.print()
-        
-        # Show results
-        all_success = True
-        for description, success, output in results:
-            if success:
-                print_success(description)
-            else:
-                print_error(description)
-                if not verbose:
-                    # Show error output even if not verbose
-                    for line in output.split('\n')[-5:]:
-                        if line.strip():
-                            console.print(f"    [dim]{line}[/dim]")
-                all_success = False
 
         console.print()
 
@@ -875,31 +736,31 @@ def build_all(
         
         # Build Stage 2
         console.print("[bold cyan]═══ Building Stage 2 ═══[/bold cyan]")
-        ctx.invoke(build_stage2, data_dir=data_dir, validate=validate, verbose=verbose)
+        ctx.invoke(build_stage2, data_dir=str(data_path), validate=validate, verbose=verbose)
         
         console.print()
         
         # Build Stage 3
         console.print("[bold cyan]═══ Building Stage 3 ═══[/bold cyan]")
-        ctx.invoke(build_stage3, data_dir=data_dir, validate=validate, reports=True, verbose=verbose)
+        ctx.invoke(build_stage3, data_dir=str(data_path), validate=validate, reports=True, verbose=verbose)
         
         console.print()
         
         # Build Stage 4
         console.print("[bold cyan]═══ Building Stage 4 ═══[/bold cyan]")
-        ctx.invoke(build_stage4, data_dir=data_dir, validate=validate, verbose=verbose)
+        ctx.invoke(build_stage4, data_dir=str(data_path), validate=False, verbose=verbose)
         
         console.print()
         
         # Build Stage 5
         console.print("[bold cyan]═══ Building Stage 5 ═══[/bold cyan]")
-        ctx.invoke(build_stage5, data_dir=data_dir, validate=validate, verbose=verbose)
+        ctx.invoke(build_stage5, data_dir=str(data_path), validate=False, verbose=verbose)
         
         console.print()
         
         # Build Stage 6
         console.print("[bold cyan]═══ Building Stage 6 ═══[/bold cyan]")
-        ctx.invoke(build_stage6, data_dir=data_dir, validate=validate, views=True, verbose=verbose)
+        ctx.invoke(build_stage6, data_dir=str(data_path), validate=False, views=True, verbose=verbose)
         
         console.print()
         console.print(Panel.fit(

@@ -11,10 +11,12 @@ from datetime import datetime
 from typing import Dict, List, Any
 
 class SchedulingInputBuilder:
-    def __init__(self):
-        self.stage1_dir = Path(__file__).parent.parent.parent / "stage_1"
-        self.stage3_dir = Path(__file__).parent.parent.parent / "stage_3"
-        self.output_dir = Path(__file__).parent.parent
+    def __init__(self, data_dir: str):
+        self.data_dir = Path(data_dir)
+        
+        self.stage1_dir = self.data_dir / "stage_1"
+        self.stage3_dir = self.data_dir / "stage_3"
+        self.output_dir = self.data_dir / "stage_4"
         
     def load_json(self, filepath: Path) -> Dict:
         """Load JSON file"""
@@ -329,9 +331,18 @@ class SchedulingInputBuilder:
         print("=" * 70)
 
 
-def main():
+def main(data_dir=None):
+    """Build scheduling input for AI."""
+    import argparse
+    
+    if data_dir is None:
+        parser = argparse.ArgumentParser(description="Build scheduling input for AI")
+        parser.add_argument("--data-dir", required=True, help="Data directory path")
+        args = parser.parse_args()
+        data_dir = args.data_dir
+    
     try:
-        builder = SchedulingInputBuilder()
+        builder = SchedulingInputBuilder(data_dir)
         data = builder.build()
         output_file = builder.save(data)
         builder.generate_summary(data)

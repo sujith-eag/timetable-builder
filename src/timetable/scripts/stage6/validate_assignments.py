@@ -134,19 +134,18 @@ class AssignmentValidator:
 def main():
     """Main execution function."""
     parser = argparse.ArgumentParser(description="Validate timetable assignments against Stage 1 rules.")
-    parser.add_argument(
-        "timetable_file",
-        type=Path,
-        help="Path to the enriched timetable JSON file (e.g., ../timetable_enriched.json)"
-    )
+    parser.add_argument("--data-dir", required=True, help="Data directory path")
     args = parser.parse_args()
 
+    # Automatically find the enriched timetable
+    timetable_file = Path(args.data_dir) / "stage_6" / "timetable_enriched.json"
+
     try:
-        validator = AssignmentValidator(args.timetable_file)
+        validator = AssignmentValidator(timetable_file)
         report_content = validator.validate()
         
-        output_dir = Path(__file__).parent.parent / "reports"
-        output_dir.mkdir(exist_ok=True)
+        output_dir = Path(args.data_dir) / "stage_6" / "reports"
+        output_dir.mkdir(exist_ok=True, parents=True)
         output_path = output_dir / "assignment_validation_report.md"
         
         with open(output_path, 'w', encoding='utf-8') as f:

@@ -16,27 +16,28 @@ Date: October 26, 2025
 
 import json
 from pathlib import Path
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Optional
 from datetime import datetime
 
-from data_loader_stage2 import DataLoaderStage2
-from assignment_generator import AssignmentGenerator
-from constraint_builder import ConstraintBuilder
-from room_preference_extractor import RoomPreferenceExtractor
+from timetable.scripts.stage3.data_loader_stage2 import DataLoaderStage2
+from timetable.scripts.stage3.assignment_generator import AssignmentGenerator
+from timetable.scripts.stage3.constraint_builder import ConstraintBuilder
+from timetable.scripts.stage3.room_preference_extractor import RoomPreferenceExtractor
 
 
 class AssignmentBuilder:
     """Orchestrates the building of teaching assignments."""
     
-    def __init__(self, semester: int):
+    def __init__(self, semester: int, data_dir: Optional[str] = None):
         """
         Initialize the assignment builder.
         
         Args:
             semester: Semester number (1 or 3)
+            data_dir: Path to data directory. If None, uses current directory detection.
         """
         self.semester = semester
-        self.loader = DataLoaderStage2()
+        self.loader = DataLoaderStage2(data_dir)
         self.base_path = self.loader.base_path / "stage_3"
         
     def build(self) -> Dict[str, Any]:
@@ -234,14 +235,24 @@ class AssignmentBuilder:
         print("\n" + "=" * 80)
 
 
-def main():
+def main(data_dir=None):
     """Main execution function."""
+    import argparse
+    
+    if data_dir is None:
+        parser = argparse.ArgumentParser(description="Build teaching assignments for Semester 1")
+        parser.add_argument("--data-dir", required=True, help="Data directory path")
+        args = parser.parse_args()
+        data_dir = args.data_dir
+    
     print("=" * 80)
     print("STAGE 3: BUILD TEACHING ASSIGNMENTS - SEMESTER 1")
     print("=" * 80)
+    print(f"Data directory: {data_dir}")
+    print()
     
     # Build assignments
-    builder = AssignmentBuilder(semester=1)
+    builder = AssignmentBuilder(semester=1, data_dir=data_dir)
     output = builder.build()
     
     # Save to file

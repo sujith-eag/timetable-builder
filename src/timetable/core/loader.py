@@ -240,7 +240,7 @@ class DataLoader:
 
         Args:
             data_dir: Root directory containing stage_1, stage_2, etc.
-            strict: If True, treat warnings as errors
+            strict: If True, raise errors on warnings
         """
         self.data_dir = Path(data_dir)
         self.strict = strict

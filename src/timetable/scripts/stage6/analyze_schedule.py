@@ -233,18 +233,20 @@ class ScheduleAnalyzer:
 def main():
     """Main execution function."""
     parser = argparse.ArgumentParser(description="Analyze a timetable for conflicts and generate a report.")
-    parser.add_argument(
-        "timetable_file",
-        type=Path,
-        help="Path to the enriched timetable JSON file (e.g., ../timetable_enriched.json)"
-    )
+    parser.add_argument("--data-dir", required=True, help="Data directory path")
     args = parser.parse_args()
 
+    # Automatically find the enriched timetable
+    timetable_file = Path(args.data_dir) / "stage_6" / "timetable_enriched.json"
+
     try:
-        analyzer = ScheduleAnalyzer(args.timetable_file)
+        analyzer = ScheduleAnalyzer(timetable_file)
         report_content = analyzer.analyze()
         
-        output_path = Path(__file__).parent.parent / "reports" / "schedule_analysis_report.md"
+        output_dir = Path(args.data_dir) / "stage_6" / "reports"
+        output_dir.mkdir(exist_ok=True, parents=True)
+        output_path = output_dir / "schedule_analysis_report.md"
+        
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(report_content)
             

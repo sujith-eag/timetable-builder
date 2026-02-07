@@ -4,7 +4,7 @@
   "title": "Enriched Timetable Schema",
   "description": "JSON schema for the final enriched timetable with complete session details",
   "type": "object",
-  "required": ["metadata", "timetable_A"],
+  "required": ["metadata", "timetable"],
   "properties": {
     "metadata": {
       "type": "object",
@@ -41,7 +41,7 @@
       },
       "additionalProperties": false
     },
-    "timetable_A": {
+    "timetable": {
       "type": "array",
       "description": "Array of enriched session objects",
       "items": {

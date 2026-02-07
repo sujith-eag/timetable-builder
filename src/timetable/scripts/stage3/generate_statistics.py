@@ -8,12 +8,7 @@ import json
 from pathlib import Path
 from collections import defaultdict
 from datetime import datetime
-
-# Paths
-STAGE_3_DIR = Path(__file__).parent.parent
-ASSIGNMENTS_SEM3 = STAGE_3_DIR / "teachingAssignments_sem3.json"
-ASSIGNMENTS_SEM1 = STAGE_3_DIR / "teachingAssignments_sem1.json"
-OUTPUT_FILE = STAGE_3_DIR / "statistics.json"
+from typing import Optional
 
 def load_assignments(filepath):
     """Load teaching assignments from JSON file."""
@@ -262,14 +257,33 @@ def generate_combined_statistics(sem1_stats, sem3_stats):
     
     return combined
 
-def main():
+def main(data_dir=None):
+    """Generate comprehensive statistics for Stage 3."""
+    import argparse
+    
+    if data_dir is None:
+        parser = argparse.ArgumentParser(description="Generate statistics for Stage 3 assignments")
+        parser.add_argument("--data-dir", required=True, help="Data directory path")
+        args = parser.parse_args()
+        data_dir = Path(args.data_dir)
+    else:
+        data_dir = Path(data_dir)
+    
+    # Construct paths
+    stage_3_dir = data_dir / "stage_3"
+    assignments_sem3 = stage_3_dir / "teachingAssignments_sem3.json"
+    assignments_sem1 = stage_3_dir / "teachingAssignments_sem1.json"
+    output_file = stage_3_dir / "statistics.json"
+    
     print("Generating comprehensive statistics for Stage 3...")
     print("=" * 70)
+    print(f"Data directory: {data_dir}")
+    print()
     
     # Load data
     print("\n📂 Loading teaching assignments...")
-    sem1_data = load_assignments(ASSIGNMENTS_SEM1)
-    sem3_data = load_assignments(ASSIGNMENTS_SEM3)
+    sem1_data = load_assignments(assignments_sem1)
+    sem3_data = load_assignments(assignments_sem3)
     print(f"   ✓ Semester 1: {len(sem1_data['assignments'])} assignments")
     print(f"   ✓ Semester 3: {len(sem3_data['assignments'])} assignments")
     
@@ -300,11 +314,11 @@ def main():
     }
     
     # Save to file
-    print(f"\n💾 Saving statistics to {OUTPUT_FILE.name}...")
-    with open(OUTPUT_FILE, 'w') as f:
+    print(f"\n💾 Saving statistics to {output_file.name}...")
+    with open(output_file, 'w') as f:
         json.dump(output, f, indent=2)
     
-    file_size = OUTPUT_FILE.stat().st_size
+    file_size = output_file.stat().st_size
     print(f"   ✓ Saved ({file_size:,} bytes)")
     
     # Print summary
@@ -339,7 +353,7 @@ def main():
     print(f"   • Tutorial: {combined_stats['resourceAnalysis']['tutorialSessions']} sessions/week")
     
     print("\n✅ Statistics generation complete!")
-    print(f"📄 Full details in: {OUTPUT_FILE.relative_to(STAGE_3_DIR.parent)}")
+    print(f"📄 Full details in: {output_file.relative_to(stage_3_dir.parent)}")
 
 if __name__ == '__main__':
     main()

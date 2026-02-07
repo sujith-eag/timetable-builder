@@ -76,11 +76,4 @@ class EnrichedSession(BaseModel):
 class EnrichedTimetable(BaseModel):
     """The complete enriched timetable with metadata and sessions."""
     metadata: EnrichedSessionMetadata
-    timetable_a: List[EnrichedSession] = Field(..., alias="timetable_A")
-
-    @field_validator('timetable_a')
-    @classmethod
-    def validate_session_count(cls, v):
-        if len(v) == 0:
-            raise ValueError('Timetable must contain at least one session')
-        return v
+    timetable: List[EnrichedSession]
